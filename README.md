@@ -35,14 +35,14 @@ To deactivate diploS/HIC envorinment by:
 conda deactivate
 ```
 
-### SURFDAWave
+### T-REx
 To activate SURFDAWave envorinment by:
 
 ```
-conda activate SURFDAWave
+conda activate T-REx
 ```
 
-To install required R packages of SURFDAWave by:
+To install required R packages of T-REx by:
 1) To start the R programming environment
 
 ```
@@ -52,7 +52,11 @@ R
 2) To install required pacakges in R:
 
 ```
-install.packages()
+install.packages(c("abind", "MASS", "glmnet","rTensor","ranger"))
+```
+
+```
+install.packages("liquidSVM", repos="http://pnp.mathematik.uni-stuttgart.de/isa/steinwart/software/R")
 ```
 
 3) 
