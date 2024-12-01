@@ -13,7 +13,9 @@ To enter the RAiSD-AI folder
 
 To download and move the source files to the RAiSD-AI folder:
 
-`` wget https://github.com/Zhaohq96/RAiSD-AI-Experiment/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-Experiment-main/; mv README.md README-RAiSD-AI-Experiment.md; mv * ../; cd ..; rm -r RAiSD-AI-Experiment-main/;``
+```
+wget https://github.com/Zhaohq96/RAiSD-AI-Experiment/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-Experiment-main/; mv README.md README-RAiSD-AI-Experiment.md; mv * ../; cd ..; rm -r RAiSD-AI-Experiment-main/;
+```
 
 
 ## To build virtual environment for each tool
