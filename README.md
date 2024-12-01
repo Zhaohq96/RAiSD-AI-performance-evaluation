@@ -2,8 +2,19 @@
 ## About
 This repository is to reproduce the comparison of RAiSD-AI against other selective sweep identification tools in the paper "". To facilitate the execution of the experiment, we made minor modifications to the code of these tools to enable customizable input and output paths. Specifically, we modified the code of diploS/HIC to make it as a binary classifier for distinguishing selective sweep from neutral region.
 
-## Download and move to RAiSD-AI folder
-To download the 
+## Setup
+### RAiSD-AI download and compile
+Firstly, to download and compile RAiSD-AI via https://github.com/alachins/raisd-ai.
+
+### Toolchain download
+To enter the RAiSD-AI folder
+
+``cd path_to_RAiSD-AI``
+
+To download and move the source files to the RAiSD-AI folder:
+
+`` wget https://github.com/Zhaohq96/RAiSD-AI-Experiment/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-Experiment-main/; mv README.md README-RAiSD-AI-Experiment.md; mv * ../; cd ..; rm -r RAiSD-AI-Experiment-main/;``
+
 
 ## To build virtual environment for each tool
 As the tools require different versions of pacakges, we recommand to ultilize anaconda to build separate virtual environment for each tool. The installation of Anaconda can be found via https://www.anaconda.com/. After installation of Anaconda, you can use the following command to activate base environment.
