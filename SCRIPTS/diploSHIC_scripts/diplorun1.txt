@@ -1,0 +1,10 @@
+file exists
+calculate summary statistics of inference files
+calculation finished
+start predict
+0.44286489486694336
+0.4834749698638916
+inference done
+100 0 0 100
+confusion matrix
+done

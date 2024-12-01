@@ -1,0 +1,24 @@
+calculate the summary statistics of training sets
+calculation finished
+split training sets
+300
+300
+done
+train the modele
+the training is finished
+calculate the summary statistics of training sets
+calculation finished
+split training sets
+300
+300
+done
+train the modele
+the training is finished
+calculate the summary statistics of training sets
+calculation finished
+split training sets
+300
+300
+done
+train the modele
+the training is finished
