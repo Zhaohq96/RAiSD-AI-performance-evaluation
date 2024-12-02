@@ -83,7 +83,13 @@ q()
 ```
 To select 'y' to store the image.
 
-3) 
+3) To install pip packages:
+
+```
+pip3 install pandas numpy
+```
+
+4) 
 To deactivate T-REx envorinment by:
 
 ```
