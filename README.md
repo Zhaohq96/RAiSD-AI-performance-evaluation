@@ -81,7 +81,7 @@ To quit R:
 ```
 q()
 ```
-To select 'y' for store the image.
+To select 'y' to store the image.
 
 3) 
 To deactivate T-REx envorinment by:
