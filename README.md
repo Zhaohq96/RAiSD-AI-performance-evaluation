@@ -90,7 +90,7 @@ pip3 install pandas numpy scipy argparse
 ```
 
 ```
-pip install -U scikit-image
+pip3 install -U scikit-image
 ```
 
 4) 
