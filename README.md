@@ -14,7 +14,7 @@ To enter the RAiSD-AI folder
 To download and move the source files to the RAiSD-AI folder:
 
 ```
-wget https://github.com/Zhaohq96/RAiSD-AI-Experiment/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-Experiment-main/; mv README.md README-RAiSD-AI-Experiment.md; mv * ../; cd ..; rm -r RAiSD-AI-Experiment-main/; rm master.zip; gcc convert.c -o convert -lm -g3; tar -xzvf Example_dataset.tar.gz; chmod +x *;
+wget https://github.com/Zhaohq96/RAiSD-AI-Experiment/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-Experiment-main/; mv README.md README-RAiSD-AI-Experiment.md; mv * ../; cd ..; rm -r RAiSD-AI-Experiment-main/; rm master.zip; gcc convert.c -o convert -lm -g3; tar -xzvf Example_dataset.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh;
 ```
 
 
