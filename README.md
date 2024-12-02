@@ -63,7 +63,7 @@ To install required R packages of T-REx by:
 
 ```
 R
-``
+```
 
 2) To install required pacakges in R:
 
