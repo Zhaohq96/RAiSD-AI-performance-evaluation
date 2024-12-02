@@ -14,7 +14,7 @@ To enter the RAiSD-AI folder
 To download and move the source files to the RAiSD-AI folder:
 
 ```
-wget https://github.com/Zhaohq96/RAiSD-AI-Experiment/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-Experiment-main/; mv README.md README-RAiSD-AI-Experiment.md; mv * ../; cd ..; rm -r RAiSD-AI-Experiment-main/; rm master.zip; gcc convert.c -o convert -lm -g3; tar -xzvf Example_dataset.tar.gz;
+wget https://github.com/Zhaohq96/RAiSD-AI-Experiment/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-Experiment-main/; mv README.md README-RAiSD-AI-Experiment.md; mv * ../; cd ..; rm -r RAiSD-AI-Experiment-main/; rm master.zip; gcc convert.c -o convert -lm -g3; tar -xzvf Example_dataset.tar.gz; chmod +x *;
 ```
 
 
@@ -63,13 +63,15 @@ To install required R packages of T-REx by:
 
 ```
 R
-```
+``
 
 2) To install required pacakges in R:
 
 ```
 install.packages(c("abind", "MASS", "glmnet","rTensor","ranger"))
 ```
+
+To select the first cloud for downloading.
 
 ```
 install.packages("liquidSVM", repos="http://pnp.mathematik.uni-stuttgart.de/isa/steinwart/software/R")
@@ -79,6 +81,7 @@ To quit R:
 ```
 q()
 ```
+To select 'y' for store the image.
 
 3) 
 To deactivate T-REx envorinment by:
@@ -90,7 +93,9 @@ conda deactivate
 ## Quick example
 To evaluate all tools on a very small datasets:
 
-``sh run_all_tools.sh Example_dataset/ Example_result/``
+```
+sh run_all_tools.sh Example_dataset/ Example_result/
+```
 
 The output files related to each tool will be stored in the subfolder of Example_result/ named after them. The results will be collected in the file Example_result/Collection.csv
 
