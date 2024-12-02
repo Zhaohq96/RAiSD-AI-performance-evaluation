@@ -86,7 +86,7 @@ To select 'y' to store the image.
 3) To install pip packages:
 
 ```
-pip3 install pandas numpy=1.24 scipy argparse seaborn
+pip3 install pandas numpy==1.24 scipy argparse seaborn
 ```
 
 ```
