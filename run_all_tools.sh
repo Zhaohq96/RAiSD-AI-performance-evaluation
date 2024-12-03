@@ -40,7 +40,7 @@ fi
 
 eval "$(conda shell.bash hook)"
 
-# Default parameters for evaluation
+# Default parameters for evaluation, can be modified if needed
 diploSHIC_win=128 # window size of extracting snps from raw ms for diploSHIC
 SURFDAWave_win=670 # window size of extracting snps from raw ms for SURFDAWave, note that SURFDAWave requires at least 670 snps
 T_REx_win=128 # window size of extracting snps from raw ms for T-REx
@@ -53,8 +53,6 @@ length=100000 # length of genomic sequence
 target=50000 # target of region that will be extracted from the genomic sequences
 d_type=1 # data type for RAiSD-AI tools
 group=8 # group size for FATER-NN-G
-
-
 
 # Run diploSHIC
 conda activate diploSHIC
@@ -77,7 +75,6 @@ conda deactivate
 conda activate Net2
 sh run_Net2.sh $1 $2Net2/ $Net2_win $length $target $epochs
 conda deactivate
-
 
 # Run RAiSD-AI tool
 conda activate raisd-ai
