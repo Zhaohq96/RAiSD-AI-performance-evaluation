@@ -362,12 +362,12 @@ int main (int argc, char ** argv)
 		fscanf(fp, "%s", tstring);
 		fprintf(fout, "%s ", tstring);
 		samples = atoi(tstring);
-		printf("number of samples: %d\n", samples);
+		//printf("number of samples: %d\n", samples);
 		for(skip=0;skip<10;skip++)fscanf(fp, "%s", tstring);
 		populations = atoi(tstring);
 		//populations = 10000;
 		fprintf(fout, "%d ", populations);
-		printf("number of populations: %d\n", populations);
+		//printf("number of populations: %d\n", populations);
 	}
 	else
 	{
@@ -376,14 +376,14 @@ int main (int argc, char ** argv)
 		fprintf(fout, "%s ", tstring);			
 		// get the number of samples
 		samples = atoi(tstring);
-		printf("number of samples: %d\n", samples);
+		//printf("number of samples: %d\n", samples);
 		
 		fscanf(fp, "%s", tstring);
 		fprintf(fout, "%s ", tstring);
 		
 		//get the number of populations
 		populations = atoi(tstring);
-		printf("number of populations: %d\n", populations);
+		//printf("number of populations: %d\n", populations);
 	}
 	
 	if(win_site>length)win_site=length;
@@ -416,13 +416,13 @@ int main (int argc, char ** argv)
 			fprintf(fout, "\n%s", tstring);
 		}
 		
-		printf("New population start!\n");
+		//printf("New population start!\n");
 		
 		// get the sites information of this population		
 		fscanf(fp, "%s", tstring);
 		int sites = atoi(tstring);
 		if(strcmp(flag, "command:") == 0)sites = sites - 1;
-		printf("site of the population %d is: %d\n", j+1, sites);
+		//printf("site of the population %d is: %d\n", j+1, sites);
 		if(win_snp <= sites)fprintf(fout, " %d\n", win_snp);
 		if(win_snp > sites)fprintf(fout, " %d\n", sites);
 
@@ -445,7 +445,7 @@ int main (int argc, char ** argv)
 				}
 				//fscanf(fp, "%s", tstring);
 				positions[i] = atoi(tstring);
-				printf("%d ", positions[i]);
+				//printf("%d ", positions[i]);
 			}
 		}
 		else
@@ -460,20 +460,20 @@ int main (int argc, char ** argv)
 					break;
 				}
 				position[i] = atof(tstring);
-				printf("%f ", position[i]);
+				//printf("%f ", position[i]);
 			}
 //			int *positions = (int*)malloc(sizeof(int)*(sites+1));
 			for(i=0;i<sites;i++)
 			{
 				positions[i] = position[i] * length;
-				printf("%d ", positions[i]);
+				//printf("%d ", positions[i]);
 			}
 		}
 		if (position_state == 1)
 		{
 			break;
 		}
-		printf("\n");
+		//printf("\n");
 		
 		// create the matrix to store the data and write it to the txt file
 		char **matrix = (char**)malloc(sizeof(char*)*samples);
@@ -567,7 +567,7 @@ int main (int argc, char ** argv)
 			fprintf(fout, "\n");
 			for(i=0;i<samples;i++)
 			{
-				printf("%s\n", matrix[i]);
+				//printf("%s\n", matrix[i]);
 				fprintf(fout, "%s\n", matrix[i]);
 			}	
 		}
@@ -589,8 +589,8 @@ int main (int argc, char ** argv)
 					if(positions[i]<=(int)(length*g)/(grid_size+1) && positions[i+1]>(int)(length*g)/(grid_size+1))index_center=i;
 				}
 				
-				printf("center is:%d\n", index_center);
-				printf("%d %d %s\n", win_snp/2, win_site, mode);
+				//printf("center is:%d\n", index_center);
+				//printf("%d %d %s\n", win_snp/2, win_site, mode);
 				
 				char **snp_matrix = (char**)malloc(sizeof(char*)*samples);
 				for(i=0;i<samples;i++)
@@ -647,7 +647,7 @@ int main (int argc, char ** argv)
 				
 				for(i=0;i<samples;i++)
 				{
-					printf("%s\n", snp_matrix[i]);
+					//printf("%s\n", snp_matrix[i]);
 					fprintf(fout, "%s\n", snp_matrix[i]);
 				}
 				for(i=0;i<samples;i++)
@@ -694,15 +694,15 @@ int main (int argc, char ** argv)
 					if(positions[i]<=(int)(length*g)/(grid_size+1) && positions[i+1]>(int)(length*g)/(grid_size+1))index_center=i;
 				}
 				
-				printf("center is:%d\n", index_center);
-				printf("%d %d %s\n", win_snp/2, win_site, mode);
+				//printf("center is:%d\n", index_center);
+				//printf("%d %d %s\n", win_snp/2, win_site, mode);
 				
 				int width, left_boundry, right_boundry;
 				int left_snp=0, right_snp=0, left_index=0, right_index=0, total;
 				width = win_site/2;
 				left_boundry = (int)(length*g)/(grid_size+1) - width;
 				right_boundry = (int)(length*g)/(grid_size+1) + width;
-				printf("%d %d\n", left_boundry, right_boundry);
+				//printf("%d %d\n", left_boundry, right_boundry);
 				for(i=0;i<sites;i++)
 				{
 					if (positions[i]>=left_boundry && positions[i]<=(int)(length*g)/(grid_size+1))left_snp++;
@@ -718,7 +718,7 @@ int main (int argc, char ** argv)
 						right_index = i+1;
 					}
 				}
-				printf("%d %d %d %d\n", left_index, right_index, left_snp, right_snp);
+				//printf("%d %d %d %d\n", left_index, right_index, left_snp, right_snp);
 				total = left_snp + right_snp;
 				if (left_snp<min_snp || right_snp<min_snp)total=0;
 				
@@ -751,7 +751,7 @@ int main (int argc, char ** argv)
 							if ((right_index-win_snp)<=0)left_index=0;
 						}
 						if (left_snp<min_snp || right_snp<min_snp)total=0;
-						printf("%d %d %d %d %d %d %d %d\n", left_boundry, right_boundry, left_snp, right_snp, left_index, right_index, total, win_snp);
+						//printf("%d %d %d %d %d %d %d %d\n", left_boundry, right_boundry, left_snp, right_snp, left_index, right_index, total, win_snp);
 					}
 					
 					if (total<win_snp)
@@ -771,7 +771,7 @@ int main (int argc, char ** argv)
 							total = 2 * min_snp;
 							left_snp = min_snp;
 							right_snp = min_snp;
-							printf("%d %d %d\n", left_index, right_index, total);
+							//printf("%d %d %d\n", left_index, right_index, total);
 						}
 						while (total != win_snp)
 						{
@@ -802,7 +802,7 @@ int main (int argc, char ** argv)
 				if (left_index<0)left_index=0;
 				if ((left_index+win_snp+1)>sites)left_index=sites-1-win_snp;
 				
-				printf("%d %d %d %d %d %d %d %d\n", left_boundry, right_boundry, left_snp, right_snp, left_index, right_index, total, win_snp);
+				//printf("%d %d %d %d %d %d %d %d\n", left_boundry, right_boundry, left_snp, right_snp, left_index, right_index, total, win_snp);
 
 				for(k=0;k<samples;k++)
 				{
@@ -850,7 +850,7 @@ int main (int argc, char ** argv)
 				fprintf(fout, "\n");
 				for(i=0;i<samples;i++)
 				{
-					printf("%s\n", snp_matrix[i]);
+					//printf("%s\n", snp_matrix[i]);
 					fprintf(fout, "%s\n", snp_matrix[i]);
 				}
 				for(i=0;i<samples;i++)
@@ -875,7 +875,7 @@ int main (int argc, char ** argv)
 			free(matrix[i]);
 		}
 		free(matrix);
-		printf("Population ends!\n\n");
+		//printf("Population ends!\n\n");
 	
 	}
 	fclose(fp);
