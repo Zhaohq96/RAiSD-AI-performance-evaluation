@@ -9,10 +9,12 @@ This repository is to reproduce the comparison of RAiSD-AI against other selecti
 1) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
 ### T-REx
-1) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
+1) modified the source code to enable customizable input parameters.
+2) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
 ### Net2
-
+1) modified the source code to enable customizable input parameters.
+2) used RAiSD-AI to provide input for aligning the comparison.
 
 ## Setup
 ### RAiSD-AI download and compile
