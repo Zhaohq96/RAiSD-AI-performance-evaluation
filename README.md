@@ -227,13 +227,11 @@ conda activate Net2
 sh run_Net2.sh Example_dataset/ Example_result/ 128 100000 50000 10
 ```
 
-### run_Net2.sh
+### run_RAiSD-AI.sh
 ```
-This script is to reproduce the comarison results in RAiSD-AI paper.
+Usage of run_RAiSD-AI.sh
 
-Usage of run_all_tools.sh
-
-sh run_all_tools.sh input_folder_path architecture output_folder_path window_size region_length target_region epoch input_data_type group(FASTER-NN-G ONLY)
+sh run_RAiSD-AI.sh input_folder_path architecture output_folder_path window_size region_length target_region epoch input_data_type group(FASTER-NN-G ONLY)
 
 The command will process the raw ms files, train the model and test with each RAiSD-AI tool. The trained model and testing results will be stored in output_folder_path/tool_name.
 
@@ -250,5 +248,4 @@ NOTE: please add '/' at the end of each folder path.
 
 Quick example:
 sh run_RAiSD-AI.sh Example_dataset/ SweepNet Example_result/ 128 100000 50000 10 1
-
 ```
