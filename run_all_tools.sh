@@ -1,4 +1,4 @@
-#!/bin/bash --login
+#!/bin/bash
 
 
 show_help() {
@@ -25,7 +25,7 @@ show_help() {
     echo "sh run_all_tools.sh Example_dataset/ Example_result/"
 }
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     show_help
     exit 0
 fi

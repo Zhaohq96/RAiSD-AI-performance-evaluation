@@ -18,7 +18,7 @@ show_help() {
     echo "sh run_T-REx.sh Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ 128 20 20"
 }
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     show_help
     exit 0
 fi

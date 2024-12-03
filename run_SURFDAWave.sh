@@ -21,7 +21,7 @@ show_help() {
     echo "sh run_SURFDAWave.sh test Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ Example_result/train/model/ 670"
 }
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     show_help
     exit 0
 fi
@@ -32,7 +32,7 @@ if [ ! -d $4 ]; then
 fi
 
 # Train
-if [ "$1" == "train" ]; then
+if [ "$1" = "train" ]; then
 	mkdir -p "$4""$1"/model;
 	mkdir -p "$4""$1"/extracted_data;
 	./convert -i $2 -m original -c bp -w $5 -s 5000 -l 100000 -r 5 -g 1 -o "$4""$1"/extracted_data/neutral.ms
@@ -41,7 +41,7 @@ if [ "$1" == "train" ]; then
 	echo 'training finish';
 
 # Test
-elif [ "$1" == "test" ]; then
+elif [ "$1" = "test" ]; then
 	mkdir -p "$4""$1"/result;
 	mkdir -p "$4""$1"/extracted_data;
 	./convert -i $2 -m original -c bp -w $6 -s 5000 -l 100000 -r 5 -g 1 -o "$4""$1"/extracted_data/neutral.ms

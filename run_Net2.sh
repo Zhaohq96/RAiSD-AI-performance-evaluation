@@ -23,7 +23,7 @@ show_help() {
     echo "sh run_Net2.sh Example_dataset/ Example_result/ 128"
 }
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     show_help
     exit 0
 fi
