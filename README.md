@@ -71,7 +71,7 @@ R
 install.packages(c("abind", "MASS", "glmnet","rTensor","ranger"))
 ```
 
-To select the first cloud for downloading.
+To select the first mirror for downloading.
 
 ```
 install.packages("liquidSVM", repos="http://pnp.mathematik.uni-stuttgart.de/isa/steinwart/software/R")
