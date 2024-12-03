@@ -120,7 +120,7 @@ conda deactivate
 To evaluate all tools on a very small datasets:
 
 ```
-bash run_all_tools.sh Example_dataset/ Example_result/
+sh run_all_tools.sh Example_dataset/ Example_result/
 ```
 
 The output files related to each tool will be stored in the subfolder of Example_result/ named after them. The results will be collected in the file Example_result/Collection.csv
