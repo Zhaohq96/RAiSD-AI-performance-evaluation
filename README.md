@@ -133,7 +133,7 @@ This script is to reproduce the comarison results in RAiSD-AI paper.
 Usage of run_all_tools.sh
 
 
-sh run_all_tools.sh input_folder_path output_folder_path
+bash run_all_tools.sh input_folder_path output_folder_path
 
 The command will process the raw ms files, train the model and test with each tool. The trained model and testing results will be stored in output_folder_path/tool_name. A csv file that contains evaluation results of all tools will be in output_folder_path/ and named Collection.csv.
 
