@@ -13,8 +13,6 @@ Firstly, to download and compile RAiSD-AI via https://github.com/alachins/raisd-
 ### Toolchain download
 To enter the RAiSD-AI folder, if you followed the last command to download and compile RAiSD-AI, you would already be in the RAiSD-AI folder.
 
-``cd path_to_RAiSD-AI``
-
 To download and move the source files to the RAiSD-AI folder:
 
 ```
