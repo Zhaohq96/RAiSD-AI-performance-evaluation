@@ -1,4 +1,4 @@
-# RAiSD-AI-Experiment
+# RAiSD-AI-performance-evaluation
 ## About
 This repository is to reproduce the comparison of RAiSD-AI against other selective sweep identification tools in the paper "". To facilitate the execution of the experiment, we made minor modifications to the code of these tools to enable customizable input and output paths. Specifically, we modified the code of diploS/HIC to make it as a binary classifier for distinguishing selective sweep from neutral region.
 
