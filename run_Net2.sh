@@ -2,8 +2,7 @@
 
 show_help() {
     echo "Usage of run_Net2.sh"
-    echo
-    echo -e "\nsh run_Net2.sh input_folder_path output_folder_path window_size"
+    echo -e "\nsh run_Net2.sh input_folder_path output_folder_path window_size length target epoch"
     echo
     echo "The command will extract the given size of window (number of snps) from the center of the raw ms files, convert the extracted matrices into images and store them in output_folder_path/results. The training model will be stored in output_folder_path/results/model. The training results and testing results will be stored in output_folder_path/results/log."
     echo
@@ -20,7 +19,7 @@ show_help() {
     echo
     echo "Quick example:"
     echo "conda activate Net2"
-    echo "sh run_Net2.sh Example_dataset/ Example_result/ 128"
+    echo "sh run_Net2.sh Example_dataset/ Example_result/ 128 100000 50000 10"
 }
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
@@ -44,11 +43,11 @@ mkdir -p "$2"results/model;
 
 
 input="$1"
-./RAiSD-AI -n "Net2""${input%/}"TrainingData2DSNP -I $1train/neutral.ms -w $3 -L 100000 -its 50000 -op IMG-GEN -icl neutralTR -f -frm -O
-./RAiSD-AI  -n "Net2""${input%/}"TrainingData2DSNP -I $1train/selsweep.ms -w $3 -L 100000 -its 50000 -op IMG-GEN -icl sweepTR -f -O
+./RAiSD-AI -n "Net2""${input%/}"TrainingData2DSNP -I $1train/neutral.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl neutralTR -f -frm
+./RAiSD-AI  -n "Net2""${input%/}"TrainingData2DSNP -I $1train/selsweep.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl sweepTR -f
 
-./RAiSD-AI -n "Net2""${input%/}"TestingData2DSNP -I $1test/neutral.ms -w $3 -L 100000 -its 50000 -op IMG-GEN -icl neutralTE -f -frm -O
-./RAiSD-AI  -n "Net2""${input%/}"TestingData2DSNP -I $1test/selsweep.ms -w $3 -L 100000 -its 50000 -op IMG-GEN -icl sweepTE -f -O
+./RAiSD-AI -n "Net2""${input%/}"TestingData2DSNP -I $1test/neutral.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl neutralTE -f -frm
+./RAiSD-AI  -n "Net2""${input%/}"TestingData2DSNP -I $1test/selsweep.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl sweepTE -f
 
 mv "RAiSD_Images.""Net2""${input%/}"TrainingData2DSNP/neutralTR/* "$2"images/train/neutral;
 mv "RAiSD_Images.""Net2""${input%/}"TrainingData2DSNP/sweepTR/* "$2"images/train/selection;
@@ -82,7 +81,7 @@ ls "$source_folder"/*.{jpg,jpeg,png,gif} 2>/dev/null | shuf | head -n "$num_to_m
     mv "$image" "$destination_folder"
 done
 
-python TOOLS/NET2/Code/main.py "$2" "$2"results/
+python TOOLS/NET2/Code/main.py "$2" "$2"results/ $6
 
 mv "RAiSD_Info.Net2""${input%/}"* "$2"results/log
 mv "RAiSD_Images.Net2""${input%/}"* "$2"results

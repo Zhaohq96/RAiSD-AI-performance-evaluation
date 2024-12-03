@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Create the virtual environment of RAiSD-AI via .yml file
+conda env create -f ENVIRONMENT/environment-raisd-ai.yml
+
 # Create the virtual environment of diploSHIC via .yml file
 conda env create -f ENVIRONMENT/environment-diploSHIC.yml
 

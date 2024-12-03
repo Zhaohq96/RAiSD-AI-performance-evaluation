@@ -32,10 +32,12 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 parser = argparse.ArgumentParser(description= 'Net-2')
 parser.add_argument('input_folder',type=str, help= 'Input folder path')
 parser.add_argument('output_folder',type=str, help= 'Output folder path')
+parser.add_argument('epoch',type=int, help= 'Number of epochs')
 
 args = parser.parse_args()
 input_folder = args.input_folder
 output_folder = args.output_folder
+epoch = args.epoch
 
 start_time = time.time()
 
@@ -45,7 +47,7 @@ NAME = "8-layers"
 lr = 0.001
 loss= 'binary_crossentropy'
 metrics = 'accuracy'
-epochs = 50
+epochs = epoch
 #dataset='dataset1'
 batch_size=50
 
@@ -98,7 +100,7 @@ valid_steps = len(valid_batches)
 
 
 
-history = model.fit_generator(
+history = model.fit(
     train_batches, 
     steps_per_epoch=epoch_steps, 
     validation_data=valid_batches,
@@ -117,7 +119,7 @@ history = model.fit_generator(
 elapsed_time = time.time() - start_time
 
 start_time = time.time()    
-evaluations = model.evaluate_generator(
+evaluations = model.evaluate(
     test_batches, 
    steps=len(test_batches),
     workers=1, 
@@ -125,7 +127,7 @@ evaluations = model.evaluate_generator(
     verbose=0)
 
 test_batches.reset() #Necessary to force it to start from beginning
-predictions = model.predict_generator(
+predictions = model.predict(
     test_batches, 
     steps=len(test_batches), 
     verbose=0)

@@ -5,11 +5,11 @@ show_help() {
     echo
     echo "There are two modes:"
     echo
-    echo -e "Train mode: \nsh run_SURFDAWave.sh train neutral_ms_file_path selective_sweep_ms_file_path outout_folder_path window_size"
+    echo -e "Train mode: \nsh run_SURFDAWave.sh train neutral_ms_file_path selective_sweep_ms_file_path outout_folder_path window_size length"
     echo
     echo "The command will extract the given size of window (number of snps) from the center of the raw ms files and store the new files in output_folder_path/train/extracted_data. The file of training summary statistics, SURFDAWave training model and training results will be stored in output_folder_path/train/model."
     echo
-    echo -e "Test mode: \nsh run_SURFDAWave.sh test neutral_ms_file_path selective_sweep_ms_file_path outout_path rds_model_folder_path window_size"
+    echo -e "Test mode: \nsh run_SURFDAWave.sh test neutral_ms_file_path selective_sweep_ms_file_path outout_path rds_model_folder_path window_size length"
     echo
     echo "The command will extract the given size of window (number of snps) from the center of the raw ms files and store the new files in output_folder_path/test/extracted_data. The 'rds_model_folder_path' should point to the folder that contains the hdf5 training model of SURFDAWave. The testing results will be stored in output_folder_path/test/result."
     echo
@@ -17,8 +17,8 @@ show_help() {
     echo
     echo "Quick example:"
     echo "conda activate SURFDAWave"
-    echo "sh run_SURFDAWave.sh train Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_result/ 670"
-    echo "sh run_SURFDAWave.sh test Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ Example_result/train/model/ 670"
+    echo "sh run_SURFDAWave.sh train Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_result/ 670 100000"
+    echo "sh run_SURFDAWave.sh test Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ Example_result/train/model/ 670 100000"
 }
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
@@ -35,8 +35,8 @@ fi
 if [ "$1" = "train" ]; then
 	mkdir -p "$4""$1"/model;
 	mkdir -p "$4""$1"/extracted_data;
-	./convert -i $2 -m original -c bp -w $5 -s 5000 -l 100000 -r 5 -g 1 -o "$4""$1"/extracted_data/neutral.ms
-	./convert -i $3 -m original -c bp -w $5 -s 5000 -l 100000 -r 5 -g 1 -o "$4""$1"/extracted_data/selsweep.ms
+	./convert -i $2 -m original -c bp -w $5 -s 5000 -l $6 -r 5 -g 1 -o "$4""$1"/extracted_data/neutral.ms
+	./convert -i $3 -m original -c bp -w $5 -s 5000 -l $6 -r 5 -g 1 -o "$4""$1"/extracted_data/selsweep.ms
 	sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_training.sh "$4""$1"/extracted_data/neutral.ms "$4""$1"/extracted_data/selsweep.ms "$4""$1"/model;
 	echo 'training finish';
 
@@ -44,8 +44,8 @@ if [ "$1" = "train" ]; then
 elif [ "$1" = "test" ]; then
 	mkdir -p "$4""$1"/result;
 	mkdir -p "$4""$1"/extracted_data;
-	./convert -i $2 -m original -c bp -w $6 -s 5000 -l 100000 -r 5 -g 1 -o "$4""$1"/extracted_data/neutral.ms
-	./convert -i $3 -m original -c bp -w $6 -s 5000 -l 100000 -r 5 -g 1 -o "$4""$1"/extracted_data/selsweep.ms
+	./convert -i $2 -m original -c bp -w $6 -s 5000 -l $6 -r 5 -g 1 -o "$4""$1"/extracted_data/neutral.ms
+	./convert -i $3 -m original -c bp -w $6 -s 5000 -l $6 -r 5 -g 1 -o "$4""$1"/extracted_data/selsweep.ms
 	sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_testing.sh "$4""$1"/extracted_data/neutral.ms "$4""$1"/extracted_data/selsweep.ms $5 "$4""$1"/result;
 	echo 'done';
 else
