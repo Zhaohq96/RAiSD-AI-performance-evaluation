@@ -57,29 +57,33 @@ mv "RAiSD_Images.""Net2""${input%/}"TestingData2DSNP/sweepTE/* "$2"images/test/s
 
 # Get the total number of images in the source folder
 source_folder="$2"images/train/neutral
-total_images=$(ls "$source_folder"/*.{jpg,jpeg,png,gif} 2>/dev/null | wc -l)
+total_images=$(find "$source_folder" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | wc -l)
 
-# Calculate 20% of the total images (rounded down)
-num_to_move=$((total_images * 20 / 100))
+# Calculate 20% of the total images (round up using awk)
+num_to_move=$(awk -v total="$total_images" 'BEGIN { print int((total * 0.2) + 0.5) }')
 
+echo $total_images $num_to_move
 # Randomly select 20% of the images and move them
 destination_folder="$2"images/valid/neutral
-ls "$source_folder"/*.{jpg,jpeg,png,gif} 2>/dev/null | shuf | head -n "$num_to_move" | while read -r image; do
+find "$source_folder" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) \
+    | shuf | head -n "$num_to_move" | while read -r image; do
     mv "$image" "$destination_folder"
 done
 
 # Get the total number of images in the source folder
 source_folder="$2"images/train/selection
-total_images=$(ls "$source_folder"/*.{jpg,jpeg,png,gif} 2>/dev/null | wc -l)
+total_images=$(find "$source_folder" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | wc -l)
 
-# Calculate 20% of the total images (rounded down)
-num_to_move=$((total_images * 20 / 100))
+# Calculate 20% of the total images (round up using awk)
+num_to_move=$(awk -v total="$total_images" 'BEGIN { print int((total * 0.2) + 0.5) }')
 
 # Randomly select 20% of the images and move them
 destination_folder="$2"images/valid/selection
-ls "$source_folder"/*.{jpg,jpeg,png,gif} 2>/dev/null | shuf | head -n "$num_to_move" | while read -r image; do
+find "$source_folder" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) \
+    | shuf | head -n "$num_to_move" | while read -r image; do
     mv "$image" "$destination_folder"
 done
+
 
 python TOOLS/NET2/Code/main.py "$2" "$2"results/ $6
 
