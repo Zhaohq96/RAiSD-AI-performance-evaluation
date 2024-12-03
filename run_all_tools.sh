@@ -1,6 +1,14 @@
 #!/bin/bash
 
-# The link to the datasets, the datasets csan be download from the link
+# Datasets download links
+# Mild bottleneck: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_mild_bottleneck/27908139?file=50811243
+# Severe bottleneck: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_severe_bottleneck/27909696?file=50817474
+# Recent migration: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_rececnt_migration/27909744?file=50817546
+# Old migration: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_old_migration/27909774?file=50817612
+# Low intensity recombination hotspot: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_low_intensity_recombination_hotspot/27936102?file=50901324
+# High intensity recombination hotspot: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_high_intensity_recombination_hotspot/27936099?file=50901303
+
+
 show_help() {
     echo "This script is to reproduce the comarison results in RAiSD-AI paper."
     echo
