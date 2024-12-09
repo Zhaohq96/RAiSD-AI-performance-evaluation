@@ -100,4 +100,4 @@ sh run_RAiSD-AI.sh $1 FASTER-NN-G $2 $RAiSD_AI_win $length $target $epochs $d_ty
 sh run_RAiSD-AI.sh $1 FASTER-NN-G $2 $RAiSD_AI_win $length $target $epochs $d_type 128
 
 # Collect results
-sh collect_result.sh "$2" "$2"
+bash collect_result.sh "$2" "$2"
