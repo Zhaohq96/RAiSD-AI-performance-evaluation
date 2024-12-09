@@ -203,28 +203,24 @@ echo -e ""FASTER-NN"\t0\t$Training_image_processing_time\t$Training_time\t$Val_a
 
 # Collect FASTER-NN-G8 results
 input_dir="${1%/}/FASTER-NN-G8/"
-Input_file1=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TrainingData2DSNP.neutralTR1" | head -n 1)
-Input_file2=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TrainingData2DSNP.sweepTR1" | head -n 1)
-Input_file3=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TrainingData2DSNP.neutralTR2" | head -n 1)
-Input_file4=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TrainingData2DSNP.sweepTR2" | head -n 1)
+Input_file1=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TrainingData2DSNP.neutralTR" | head -n 1)
+Input_file2=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TrainingData2DSNP.sweepTR" | head -n 1)
+
 input_file1=$input_dir$Input_file1
 input_file2=$input_dir$Input_file2
-input_file3=$input_dir$Input_file3
-input_file4=$input_dir$Input_file4
-
-Training_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file3" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file4" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
 
 
-Input_file1=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TestingData2DSNP.neutralTE1" | head -n 1)
-Input_file2=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TestingData2DSNP.sweepTE1" | head -n 1)
-Input_file3=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TestingData2DSNP.neutralTE2" | head -n 1)
-Input_file4=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TestingData2DSNP.sweepTE2" | head -n 1)
+Training_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
+
+
+Input_file1=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TestingData2DSNP.neutralTE" | head -n 1)
+Input_file2=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "TestingData2DSNP.sweepTE" | head -n 1)
+
 input_file1="$input_dir$Input_file1"
 input_file2="$input_dir$Input_file2"
-input_file3="$input_dir$Input_file3"
-input_file4="$input_dir$Input_file4"
 
-Testing_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file3" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file4" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
+
+Testing_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
 
 
 Input_file=$(ls "$1""FASTER-NN-G8/" | grep "^RAiSD_Info.FASTER-NN-G8" | grep "Model" | head -n 1)
@@ -242,28 +238,24 @@ echo -e ""FASTER-NN-G8"\t0\t$Training_image_processing_time\t$Training_time\t$Va
 
 # Collect FASTER-NN-G128 results
 input_dir="${1%/}/FASTER-NN-G128/"
-Input_file1=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TrainingData2DSNP.neutralTR1" | head -n 1)
-Input_file2=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TrainingData2DSNP.sweepTR1" | head -n 1)
-Input_file3=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TrainingData2DSNP.neutralTR2" | head -n 1)
-Input_file4=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TrainingData2DSNP.sweepTR2" | head -n 1)
+Input_file1=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TrainingData2DSNP.neutralTR" | head -n 1)
+Input_file2=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TrainingData2DSNP.sweepTR" | head -n 1)
+
 input_file1=$input_dir$Input_file1
 input_file2=$input_dir$Input_file2
-input_file3=$input_dir$Input_file3
-input_file4=$input_dir$Input_file4
-
-Training_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file3" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file4" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
 
 
-Input_file1=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TestingData2DSNP.neutralTE1" | head -n 1)
-Input_file2=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TestingData2DSNP.sweepTE1" | head -n 1)
-Input_file3=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TestingData2DSNP.neutralTE2" | head -n 1)
-Input_file4=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TestingData2DSNP.sweepTE2" | head -n 1)
+Training_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
+
+
+Input_file1=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TestingData2DSNP.neutralTE" | head -n 1)
+Input_file2=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "TestingData2DSNP.sweepTE" | head -n 1)
+
 input_file1="$input_dir$Input_file1"
 input_file2="$input_dir$Input_file2"
-input_file3="$input_dir$Input_file3"
-input_file4="$input_dir$Input_file4"
 
-Testing_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file3" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file4" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
+
+Testing_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
 
 
 Input_file=$(ls "$1""FASTER-NN-G128/" | grep "^RAiSD_Info.FASTER-NN-G128" | grep "Model" | head -n 1)

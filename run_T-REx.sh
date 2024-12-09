@@ -65,7 +65,7 @@ echo "$((end_s-start_s)) " >> "$5"Results/Results.txt
 # Train and test
 Rscript TOOLS/T-REx/TD.R 5 $8 $8 $9 $9 "$5"CVF_files/ "$5"Results/
 
-cp *.csv "$5"Results/
+mv *.csv "$5"Results/
 
 echo 'Elastic net predicting accuracy:' >> "$5"Results/Results.txt
 python3 TOOLS/T-REx/calculate_acc.py "$5"Results/Class_EN.csv >> "$5"Results/Results.txt
