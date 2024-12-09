@@ -1,6 +1,8 @@
 # RAiSD-AI-performance-evaluation
 ## About
-This repository is to reproduce the comparison of RAiSD-AI against other selective sweep identification tools in the paper "". To facilitate the execution of the experiment, we provided extra scripts made minor modifications to the code of these tools to enable customizable input and output paths:
+This repository is to reproduce the comparison of RAiSD-AI against other selective sweep identification tools in the paper "". 
+
+## Statement
 ### diploS/HIC
 1) modified the source code to make diploS/HIC as a binary classifier.
 2) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
