@@ -139,8 +139,7 @@ pip3 install pandas numpy==1.24 scipy==1.10 argparse seaborn
 pip3 install -U scikit-image
 ```
 
-4) 
-To deactivate T-REx envorinment by:
+4) To deactivate T-REx envorinment by:
 
 ```
 conda deactivate
