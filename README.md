@@ -68,7 +68,7 @@ conda deactivate
 ```
 
 ### T-REx
-To activate SURFDAWave envorinment by:
+To activate T-REx envorinment by:
 
 ```
 conda activate T-REx
@@ -81,23 +81,22 @@ To install required R packages of T-REx by:
 R
 ```
 
-2) To install required pacakges in R:
+2) To install required pacakges in R and select a mirror for downloading:
 
 ```
 install.packages(c("abind", "MASS", "glmnet","rTensor","ranger"))
 ```
 
-To select the first mirror for downloading.
 
 ```
 install.packages("liquidSVM", repos="http://pnp.mathematik.uni-stuttgart.de/isa/steinwart/software/R")
 ```
 
-To quit R:
+To quit R and select 'y' to save the image:
 ```
 q()
 ```
-To select 'y' to store the image.
+
 
 3) To install pip packages:
 
