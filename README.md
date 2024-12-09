@@ -9,20 +9,41 @@ Citation: _Kern, A. D., & Schrider, D. R. (2018). diploS/HIC: an updated approac
 
 Tool download link: https://github.com/kr-colab/diploSHIC
 
-
+Date of obtaining the tool: Oct, 2021
 
 Modification:
 1) modified the source code to make diploS/HIC as a binary classifier.
 2) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
 ### SURFDAWave
+Citation: _Mughal, M. R., Koch, H., Huang, J., Chiaromonte, F., & DeGiorgio, M. (2020). Learning the properties of adaptive regions with functional data analysis. PLoS genetics, 16(8), e1008896._
+
+Tool download link: https://degiorgiogroup.fau.edu/surfdawave.html
+
+Date of obtaining the tool: Oct, 2021
+
+Modification:
 1) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
 ### T-REx
+Citation: _Amin, M. R., Hasan, M., Arnab, S. P., & DeGiorgio, M. (2023). Tensor Decomposition-based Feature Extraction and Classification to Detect Natural Selection from Genomic Data. Molecular Biology and Evolution, 40(10), msad216._
+
+Tool download link: https://github.com/RuhAm/T-REx
+
+Date of obtaining the tool: Nov, 2024
+
+Modification:
 1) modified the source code to enable customizable input parameters.
 2) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
 ### Net2
+Citation: _Nguembang Fadja, A., Riguzzi, F., Bertorelle, G., & Trucchi, E. (2021). Identification of natural selection in genomic data with deep convolutional neural network. BioData Mining, 14, 1-18._
+
+Tool download link: https://bitbucket.org/ArnaudFadja/genetic_data_experiments/src/master/
+
+Date of obtaining the tool: Oct, 2021
+
+Modification:
 1) modified the source code to enable customizable input parameters.
 2) used RAiSD-AI to provide input for aligning the comparison.
 
