@@ -6,6 +6,8 @@ This repository is to reproduce the comparison of RAiSD-AI against other selecti
 For standardizing experimental setups and replicating the comparison results, we modified the source codes of the following tools and provide the modified tools in the repository.
 ### diploS/HIC
 Citation: _Kern, A. D., & Schrider, D. R. (2018). diploS/HIC: an updated approach to classifying selective sweeps. G3: Genes, Genomes, Genetics, 8(6), 1959-1970._
+Tool download link: 
+Modification:
 1) modified the source code to make diploS/HIC as a binary classifier.
 2) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
