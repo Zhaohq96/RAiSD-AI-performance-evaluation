@@ -101,19 +101,19 @@ elif [ "$2" = "FASTER-NN-G" ]; then
 		mkdir -p "$3""FASTER-NN-G""$group""/";
 	fi
 
-	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -I $1train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR1 -f -frm
-	./RAiSD-AI  -n "FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -I $1train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR1 -f
-	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -I $1train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR2 -f
-	./RAiSD-AI  -n "FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -I $1train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR2 -f 
+	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -I $1train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR -f -frm
+	./RAiSD-AI  -n "FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -I $1train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f
+#	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -I $1train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR2 -f
+#	./RAiSD-AI  -n "FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -I $1train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR2 -f 
 
-	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"TestingData2DSNP -I $1test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE1 -f -frm
-	./RAiSD-AI  -n "FASTER-NN-G""$group""${input%/}"TestingData2DSNP -I $1test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE1 -f
-	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"TestingData2DSNP -I $1test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE2 -f
-	./RAiSD-AI  -n "FASTER-NN-G""$group""${input%/}"TestingData2DSNP -I $1test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE2 -f
+	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"TestingData2DSNP -I $1test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE -f -frm
+	./RAiSD-AI  -n "FASTER-NN-G""$group""${input%/}"TestingData2DSNP -I $1test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f
+#	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"TestingData2DSNP -I $1test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE2 -f
+#	./RAiSD-AI  -n "FASTER-NN-G""$group""${input%/}"TestingData2DSNP -I $1test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE2 -f
 
-	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}""Model" -I "RAiSD_Images.""FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -f -op MDL-GEN -frm -e $epochs -arc FASTER-NN-G -g $group -cl4 label00=neutralTR1 label01=sweepTR1 label10=neutralTR2 label11=sweepTR2
+	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}""Model" -I "RAiSD_Images.""FASTER-NN-G""$group""${input%/}"TrainingData2DSNP -f -op MDL-GEN -frm -e $epochs -arc FASTER-NN-G -g $group 
 
-	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"ModelTest -mdl RAiSD_Model."FASTER-NN-G""$group""${input%/}""Model" -f -op MDL-TST -I RAiSD_Images."FASTER-NN-G""$group""${input%/}"TestingData2DSNP -clp 4 sweepTR1=sweepTE1 neutralTR1=neutralTE1 sweepTR2=sweepTE2 neutralTR2=neutralTE2
+	./RAiSD-AI -n "FASTER-NN-G""$group""${input%/}"ModelTest -mdl RAiSD_Model."FASTER-NN-G""$group""${input%/}""Model" -f -op MDL-TST -I RAiSD_Images."FASTER-NN-G""$group""${input%/}"TestingData2DSNP -clp 2 sweepTR=sweepTE neutralTR=neutralTE
 
 	mv "RAiSD_"*".FASTER-NN-G""$group""${input%/}"* "$3""FASTER-NN-G""$group""/"
 fi
