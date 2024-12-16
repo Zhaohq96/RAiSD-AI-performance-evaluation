@@ -1,6 +1,8 @@
 # RAiSD-AI-performance-evaluation
 ## About
-This repository is to reproduce the comparison of RAiSD-AI against other selective sweep identification tools in the paper "". 
+This repository contains all information for reproducing the evaluation results in the paper "". In the paper, we evaluated how RAiSD-AI tools perform on detection of natural selection, more specifically, we compared RAiSD-AI against the tools diploS/HIC, SURFDAWave, T-REx and the CNN presented by Nguembang Fadja et.al.
+
+To facilitate our comparison, we used the tools from the repositories provided in their articals
 
 ## Declaration
 For standardizing experimental setups and replicating the comparison results, we modified the source codes of the following tools and provide the modified tools in the repository.
@@ -36,7 +38,7 @@ Modification:
 1) modified the source code to enable customizable input parameters.
 2) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
-### Net2
+### CNN proposed by Nguembang_Fadja et.al
 Citation: _Nguembang Fadja, A., Riguzzi, F., Bertorelle, G., & Trucchi, E. (2021). Identification of natural selection in genomic data with deep convolutional neural network. BioData Mining, 14, 1-18._
 
 Tool download link: https://bitbucket.org/ArnaudFadja/genetic_data_experiments/src/master/
@@ -286,7 +288,7 @@ conda activate T-REx
 sh run_T-REx.sh Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ 128 100000 20 20
 ```
 
-### run_Net2.sh
+### run_CNN_Nguembang_Fadja.sh
 ```
 Usage of run_Net2.sh
 
