@@ -1,10 +1,5 @@
 #!/bin/bash
 
-rm -r $5;
-if [ ! -d $5 ]; then
-	mkdir -p "$5";
-fi
-
 show_help() {
     echo "Usage of run_T-REx.sh"
     echo
@@ -22,6 +17,11 @@ show_help() {
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     show_help
     exit 0
+fi
+
+rm -r $5;
+if [ ! -d $5 ]; then
+	mkdir -p "$5";
 fi
 
 mkdir -p "$5"MS_files_train;
