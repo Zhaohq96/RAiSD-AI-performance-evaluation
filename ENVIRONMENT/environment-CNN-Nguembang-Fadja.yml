@@ -1,4 +1,4 @@
-name: CNN_Nguembang_Fadja
+name: CNN-Nguembang-Fadja
 channels:
   - conda-forge
   - bioconda
