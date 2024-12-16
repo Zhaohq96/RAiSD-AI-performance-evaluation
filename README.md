@@ -53,15 +53,15 @@ Modification:
 Extra preparation:
 1) used RAiSD-AI to provide input for aligning the comparison.
 
-## Setup
-### RAiSD-AI download and compile
+## Step by step instructions
+### Step 1: RAiSD-AI download and compile
 Firstly, to download and compile RAiSD-AI via https://github.com/alachins/raisd-ai. Using quick command:
 
 ```
  mkdir RAiSD-AI; cd RAiSD-AI; wget https://github.com/alachins/RAiSD-AI/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-master; ./compile-RAiSD-AI.sh
 ```
 
-### Toolchain download
+### Step 2: Toolchain download
 To enter the RAiSD-AI folder, if you followed the last command to download and compile RAiSD-AI, you would already be in the RAiSD-AI folder.
 
 To download and move the source files to the RAiSD-AI folder:
@@ -70,21 +70,21 @@ To download and move the source files to the RAiSD-AI folder:
 wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-main/; mv README.md README-RAiSD-AI-performance-evaluation.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-main/; rm master.zip; gcc convert.c -o convert -lm; tar -xzvf Example_dataset.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh;
 ```
 
-
-## To build virtual environment for each tool
+## Step 3: Anaconda installation
 As the tools require different versions of pacakges, we recommand to ultilize anaconda to build separate virtual environment for each tool. The installation of Anaconda can be found via https://www.anaconda.com/. After installation of Anaconda, you can use the following command to activate base environment.
 
 ``source path_to_anaconda3/bin/activate``
 
 where _path_to_anaconda3_ is the path of Anaconda folder.
-### Basic installation
+
+### Step 4: Virtual environment installation
 To run the command for basic environment establishment for each tool:
 
 ```
 sh install_environment.sh
 ```
 
-### diploS/HIC
+### Step 5: Additional operation for diploS/HIC virtual environment
 To activate diploS/HIC envorinment by:
 
 ```
@@ -104,7 +104,7 @@ To deactivate diploS/HIC envorinment by:
 conda deactivate
 ```
 
-### SURFDAWave
+### Step 6: Additional package installations for SURFDAWave
 To activate SURFDAWave envorinment by:
 
 ```
@@ -139,7 +139,7 @@ q()
 conda deactivate
 ```
 
-### T-REx
+### Step 7: Additional package installations for T-REx
 To activate T-REx envorinment by:
 
 ```
@@ -186,7 +186,7 @@ pip3 install -U scikit-image
 conda deactivate
 ```
 
-## Quick example
+### Step 8: Quick example
 To evaluate all tools on a very small datasets:
 
 ```
@@ -194,6 +194,13 @@ bash run_all_tools.sh Example_dataset/ Example_result/ Example
 ```
 
 The output files related to each tool will be stored in the subfolder of Example_result/ named after them. The results will be collected in the file Example_result/Collection.csv
+
+### Step 9: Evaluation results reproduction
+To reproduce the evaluation results in the paper:
+
+'''
+bash run_all_datasets_parallel.sh
+'''
 
 ## Remove all environment and the entire folder
 To Remove all environment and the entire folder by the command:
@@ -210,7 +217,7 @@ This script is to reproduce the comarison results in RAiSD-AI paper.
 Usage of run_all_tools.sh
 
 
-bash run_all_tools.sh input_folder_path output_folder_path
+sh run_all_tools.sh input_folder_path output_folder_path RAiSD_AI_run_ID
 
 The command will process the raw ms files, train the model and test with each tool. The trained model and testing results will be stored in output_folder_path/tool_name. A csv file that contains evaluation results of all tools will be in output_folder_path/ and named Collection.csv.
 
@@ -226,7 +233,7 @@ input_folder
 NOTE: please add '/' at the end of each folder path.
 
 Quick example:
-sh run_all_tools.sh Example_dataset/ Example_result/
+sh run_all_tools.sh Example_dataset/ Example_result/ Example
 ```
 
 ### run_diploSHIC.sh
@@ -294,9 +301,9 @@ sh run_T-REx.sh Example_dataset/train/neutral.ms Example_dataset/train/selsweep.
 
 ### run_CNN_Nguembang_Fadja.sh
 ```
-Usage of run_Net2.sh
+Usage of run_CNN_Nguembang_Fadja.sh
 
-sh run_Net2.sh input_folder_path output_folder_path window_size length target epoch
+sh run_CNN_Nguembang_Fadja.sh input_folder_path output_folder_path window_size length target epoch run_ID
 
 The command will extract the given size of window (number of snps) from the center of the raw ms files, convert the extracted matrices into images and store them in output_folder_path/results. The training model will be stored in output_folder_path/results/model. The training results and testing results will be stored in output_folder_path/results/log.
 
@@ -312,15 +319,15 @@ input_folder
 NOTE: please add '/' at the end of each folder path.
 
 Quick example:
-conda activate Net2
-sh run_Net2.sh Example_dataset/ Example_result/ 128 100000 50000 10
+conda activate CNN-Nguembang-Fadja
+sh run_CNN_Nguembang_Fadja.sh Example_dataset/ Example_result/ 128 100000 50000 10 Example
 ```
 
 ### run_RAiSD-AI.sh
 ```
 Usage of run_RAiSD-AI.sh
 
-sh run_RAiSD-AI.sh input_folder_path architecture output_folder_path window_size region_length target_region epoch input_data_type group(FASTER-NN-G ONLY)
+sh run_RAiSD-AI.sh -i input_folder_path -a architecture -n run_ID -o output_folder_path -w window_size -l region_length -t target_region -e epoch -d input_data_type -g group(FASTER-NN-G ONLY)
 
 The command will process the raw ms files, train the model and test with each RAiSD-AI tool. The trained model and testing results will be stored in output_folder_path/tool_name.
 
@@ -336,5 +343,6 @@ input_folder
 NOTE: please add '/' at the end of each folder path.
 
 Quick example:
-sh run_RAiSD-AI.sh Example_dataset/ SweepNet Example_result/ 128 100000 50000 10 1
+conda activate raisd-ai
+sh run_RAiSD-AI.sh -i Example_dataset/ -a SweepNet -n Example -o Example_result/ -w 128 -l 100000 -t 50000 -e 10 -d 1
 ```
