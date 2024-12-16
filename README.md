@@ -104,7 +104,7 @@ To deactivate diploS/HIC envorinment by:
 conda deactivate
 ```
 
-### Step 6: Additional package installations for SURFDAWave
+### Step 6: Additional package installations for SURFDAWave virtual environment
 To activate SURFDAWave envorinment by:
 
 ```
@@ -139,7 +139,7 @@ q()
 conda deactivate
 ```
 
-### Step 7: Additional package installations for T-REx
+### Step 7: Additional package installations for T-REx virtual environment
 To activate T-REx envorinment by:
 
 ```
