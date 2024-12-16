@@ -98,6 +98,41 @@ To deactivate diploS/HIC envorinment by:
 conda deactivate
 ```
 
+### SURFDAWave
+To activate SURFDAWave envorinment by:
+
+```
+conda activate SURFDAWave
+```
+
+To install required R packages of SURFDAWave by:
+1) To start the R programming environment
+
+```
+R
+```
+
+2) To install required pacakges in R and select a mirror for downloading:
+
+```
+install.packages('wavethresh')
+```
+
+```
+install.packages('matrixStats')
+```
+
+To quit R and select 'y' to save the image:
+```
+q()
+```
+
+3) To deactivate T-REx envorinment by:
+
+```
+conda deactivate
+```
+
 ### T-REx
 To activate T-REx envorinment by:
 
