@@ -2,7 +2,7 @@
 ## About
 This repository contains all information for reproducing the evaluation results in the paper "". In the paper, we evaluated how RAiSD-AI tools perform on detection of natural selection, more specifically, we compared RAiSD-AI against the tools diploS/HIC, SURFDAWave, T-REx and the CNN presented by Nguembang Fadja et.al.
 
-We used the tools from the repositories provided in their articals, to facilitate our comparison, we did some minor modifications and provided extra scripts to prepare the input data aligned with RAiSD-AI. The details are as following:
+We used the tools from the repositories provided in their articles, to facilitate our comparison, we did some minor modifications and provided extra scripts to prepare the input data aligned with RAiSD-AI. The details are as following:
 
 ### diploS/HIC
 Citation: _Kern, A. D., & Schrider, D. R. (2018). diploS/HIC: an updated approach to classifying selective sweeps. G3: Genes, Genomes, Genetics, 8(6), 1959-1970._
