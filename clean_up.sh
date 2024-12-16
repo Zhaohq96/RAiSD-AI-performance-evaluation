@@ -9,4 +9,4 @@ conda env remove --name raisd-ai
 
 # remove the entire folder
 cd ../..
-rm -r RAiSD-AI2
+rm -r RAiSD-AI
