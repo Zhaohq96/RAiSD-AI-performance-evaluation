@@ -70,7 +70,7 @@ To download and move the source files to the RAiSD-AI folder:
 wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-main/; mv README.md README-RAiSD-AI-performance-evaluation.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-main/; rm master.zip; gcc convert.c -o convert -lm; tar -xzvf Example_dataset.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh;
 ```
 
-## Step 3: Anaconda installation
+### Step 3: Anaconda installation
 As the tools require different versions of pacakges, we recommand to ultilize anaconda to build separate virtual environment for each tool. The installation of Anaconda can be found via https://www.anaconda.com/. After installation of Anaconda, you can use the following command to activate base environment.
 
 ``source path_to_anaconda3/bin/activate``
@@ -198,9 +198,9 @@ The output files related to each tool will be stored in the subfolder of Example
 ### Step 9: Evaluation results reproduction
 To reproduce the evaluation results in the paper:
 
-'''
+```
 bash run_all_datasets_parallel.sh
-'''
+```
 
 ## Remove all environment and the entire folder
 To Remove all environment and the entire folder by the command:
