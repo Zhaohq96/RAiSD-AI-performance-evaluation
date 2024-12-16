@@ -2,10 +2,8 @@
 ## About
 This repository contains all information for reproducing the evaluation results in the paper "". In the paper, we evaluated how RAiSD-AI tools perform on detection of natural selection, more specifically, we compared RAiSD-AI against the tools diploS/HIC, SURFDAWave, T-REx and the CNN presented by Nguembang Fadja et.al.
 
-To facilitate our comparison, we used the tools from the repositories provided in their articals
+We used the tools from the repositories provided in their articals, to facilitate our comparison, we did some minor modifications and provided extra scripts to prepare the input data aligned with RAiSD-AI. The details are as following:
 
-## Declaration
-For standardizing experimental setups and replicating the comparison results, we modified the source codes of the following tools and provide the modified tools in the repository.
 ### diploS/HIC
 Citation: _Kern, A. D., & Schrider, D. R. (2018). diploS/HIC: an updated approach to classifying selective sweeps. G3: Genes, Genomes, Genetics, 8(6), 1959-1970._
 
@@ -15,16 +13,18 @@ Date of obtaining the tool: Oct, 2021
 
 Modification:
 1) modified the source code to make diploS/HIC as a binary classifier.
-2) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
+
+Extra preparation:
+1) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
 ### SURFDAWave
 Citation: _Mughal, M. R., Koch, H., Huang, J., Chiaromonte, F., & DeGiorgio, M. (2020). Learning the properties of adaptive regions with functional data analysis. PLoS genetics, 16(8), e1008896._
 
 Tool download link: https://degiorgiogroup.fau.edu/surfdawave.html
 
-Date of obtaining the tool: Oct, 2021
+Date of obtaining the tool: Dec, 2024
 
-Modification:
+Extra preparation:
 1) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
 ### T-REx
@@ -32,22 +32,26 @@ Citation: _Amin, M. R., Hasan, M., Arnab, S. P., & DeGiorgio, M. (2023). Tensor 
 
 Tool download link: https://github.com/RuhAm/T-REx
 
-Date of obtaining the tool: Nov, 2024
+Date of obtaining the tool: Dec, 2024
 
 Modification:
-1) modified the source code to enable customizable input parameters.
-2) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
+1) modified the source code to provide input parameters in command.
+
+Extra preparation:
+1) used a C program to extract the same region that RAiSD-AI tools analyze from the raw ms file for aligning the comparison.
 
 ### CNN proposed by Nguembang_Fadja et.al
 Citation: _Nguembang Fadja, A., Riguzzi, F., Bertorelle, G., & Trucchi, E. (2021). Identification of natural selection in genomic data with deep convolutional neural network. BioData Mining, 14, 1-18._
 
 Tool download link: https://bitbucket.org/ArnaudFadja/genetic_data_experiments/src/master/
 
-Date of obtaining the tool: Oct, 2021
+Date of obtaining the tool: Dec, 2024
 
 Modification:
-1) modified the source code to enable customizable input parameters.
-2) used RAiSD-AI to provide input for aligning the comparison.
+1) modified the source code to provide input parameters in command.
+
+Extra preparation:
+1) used RAiSD-AI to provide input for aligning the comparison.
 
 ## Setup
 ### RAiSD-AI download and compile
