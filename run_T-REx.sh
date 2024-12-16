@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm -r $5;
 if [ ! -d $5 ]; then
 	mkdir -p "$5";
 fi

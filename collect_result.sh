@@ -83,30 +83,30 @@ fi
 echo -e ""T\-REx"\t$Training_data_processing_time\t0\t$Training_time\t\t$Testing_data_processing_time\t0\t$Testing_time\t$Testing_acc" >> "$output_file"
 
 # Collect Net-2 results
-input_dir="${1%/}/Net2/results/log/"
-Input_file1=$(ls "$1""Net2/results/log/" | grep "^RAiSD_Info.Net2" | grep "TrainingData2DSNP.neutralTR" | head -n 1)
-Input_file2=$(ls "$1""Net2/results/log/" | grep "^RAiSD_Info.Net2" | grep "TrainingData2DSNP.sweepTR" | head -n 1)
+input_dir="${1%/}/CNN_Nguembang_Fadja/results/log/"
+Input_file1=$(ls "$1""CNN_Nguembang_Fadja/results/log/" | grep "^RAiSD_Info.CNN_Nguembang_Fadja" | grep "TrainingData2DSNP.neutralTR" | head -n 1)
+Input_file2=$(ls "$1""CNN_Nguembang_Fadja/results/log/" | grep "^RAiSD_Info.CNN_Nguembang_Fadja" | grep "TrainingData2DSNP.sweepTR" | head -n 1)
 input_file1=$input_dir$Input_file1
 input_file2=$input_dir$Input_file2
 
 Training_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
 
 
-Input_file1=$(ls "$1""Net2/results/log/" | grep "^RAiSD_Info.Net2" | grep "TestingData2DSNP.neutralTE" | head -n 1)
-Input_file2=$(ls "$1""Net2/results/log/" | grep "^RAiSD_Info.Net2" | grep "TestingData2DSNP.sweepTE" | head -n 1)
+Input_file1=$(ls "$1""CNN_Nguembang_Fadja/results/log/" | grep "^RAiSD_Info.CNN_Nguembang_Fadja" | grep "TestingData2DSNP.neutralTE" | head -n 1)
+Input_file2=$(ls "$1""CNN_Nguembang_Fadja/results/log/" | grep "^RAiSD_Info.CNN_Nguembang_Fadja" | grep "TestingData2DSNP.sweepTE" | head -n 1)
 input_file1="$input_dir$Input_file1"
 input_file2="$input_dir$Input_file2"
 
 Testing_image_processing_time=$(echo "scale=2; (($(tail -n 3 "$input_file1" | head -n 1 | awk '{print $4}') + $(tail -n 3 "$input_file2" | head -n 1 | awk '{print $4}')) * 100) / 100" | bc)
 
 
-Input_file=$(ls "$1""Net2/results/log/" | grep "^create_model" | grep ".txt" | head -n 1)
+Input_file=$(ls "$1""CNN_Nguembang_Fadja/results/log/" | grep "^create_model" | grep ".txt" | head -n 1)
 input_file=$input_dir$Input_file
 Training_time=$(echo "scale=2; (($(sed -n "19p" "$input_file" | cut -d' ' -f"3")) *100) /100 " | bc)
 Testing_time=$(echo "scale=2; (($(sed -n "20p" "$input_file" | cut -d' ' -f"3")) *100) /100 " | bc)
 Val_acc=$(echo $(sed -n "22p" "$input_file" | cut -d' ' -f"6"))
 Testing_acc=$(echo $(sed -n "27p" "$input_file" | cut -d' ' -f"2"))
-echo -e ""Net2"\t0\t$Training_image_processing_time\t$Training_time\t$Val_acc\t0\t$Testing_image_processing_time\t$Testing_time\t$Testing_acc" >> "$output_file"
+echo -e ""CNN_Nguembang_Fadja"\t0\t$Training_image_processing_time\t$Training_time\t$Val_acc\t0\t$Testing_image_processing_time\t$Testing_time\t$Testing_acc" >> "$output_file"
 
 # Collect SweepNet results
 input_dir="${1%/}/SweepNet/"

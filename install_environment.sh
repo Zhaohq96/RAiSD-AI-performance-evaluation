@@ -12,5 +12,5 @@ conda env create -f ENVIRONMENT/environment-SURFDAWave.yml
 # Create the virtual environment of T-REx via .yml file
 conda env create -f ENVIRONMENT/environment-T-REx.yml
 
-# Create the virtual environment of Net2 via .yml file
-conda env create -f ENVIRONMENT/environment-Net2.yml
+# Create the virtual environment of CNN-Nguembang-Fadja via .yml file
+conda env create -f ENVIRONMENT/environment-CNN-Nguembang-Fadja.yml

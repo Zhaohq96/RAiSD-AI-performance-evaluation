@@ -14,7 +14,7 @@ show_help() {
     echo
     echo "Usage of run_all_tools.sh"
     echo
-    echo -e "\nsh run_all_tools.sh input_folder_path output_folder_path"
+    echo -e "\nsh run_all_tools.sh input_folder_path output_folder_path RAiSD_AI_run_ID"
     echo
     echo "The command will process the raw ms files, train the model and test with each tool. The trained model and testing results will be stored in output_folder_path/tool_name. A csv file that contains evaluation results of all tools will be in output_folder_path/ and named Collection.csv."
     echo
@@ -30,7 +30,7 @@ show_help() {
     echo "NOTE: please add '/' at the end of each folder path."
     echo
     echo "Quick example:"
-    echo "sh run_all_tools.sh Example_dataset/ Example_result/"
+    echo "sh run_all_tools.sh Example_dataset/ Example_result/ Example"
 }
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
@@ -45,10 +45,10 @@ diploSHIC_win=128 # window size of extracting snps from raw ms for diploSHIC
 SURFDAWave_win=670 # window size of extracting snps from raw ms for SURFDAWave, note that SURFDAWave requires at least 670 snps
 T_REx_win=128 # window size of extracting snps from raw ms for T-REx
 RAiSD_AI_win=128 # window size of extracting snps from raw ms for RAiSD-AI tools
-Net2_win=128 # window size of extracting snps from raw ms for Net2
+CNN_Nguembang_Fadja_win=128 # window size of extracting snps from raw ms for CNN_Nguembang_Fadja
 num_sim_train=20 # number of simulations of each class of training sets, note that the training sets should be balanced
 num_sim_test=20 # number of simulations of each class of testing sets, note that the testing sets should be balanced
-epochs=10 # number of epochs for deep-learning-based methods including diploSHIC, Net2 and RAiSD-AI tools
+epochs=10 # number of epochs for deep-learning-based methods including diploSHIC, CNN_Nguembang_Fadja and RAiSD-AI tools
 length=100000 # length of genomic sequence
 target=50000 # target of region that will be extracted from the genomic sequences
 d_type=1 # data type for RAiSD-AI tools
@@ -71,9 +71,9 @@ conda activate T-REx
 sh run_T-REx.sh $1train/neutral.ms $1train/selsweep.ms $1test/neutral.ms $1test/selsweep.ms $2T-REx/ $T_REx_win $length $num_sim_train $num_sim_test 
 conda deactivate
 
-# Run Net2
-conda activate Net2
-sh run_Net2.sh $1 $2Net2/ $Net2_win $length $target $epochs
+# Run CNN_Nguembang_Fadja
+conda activate CNN-Nguembang-Fadja
+sh run_CNN_Nguembang_Fadja.sh $1 $2CNN_Nguembang_Fadja/ $CNN_Nguembang_Fadja_win $length $target $epochs $3
 conda deactivate
 
 # Run RAiSD-AI tool
@@ -81,23 +81,23 @@ conda activate raisd-ai
 
 # Run SweepNet tool
 
-sh run_RAiSD-AI.sh $1 SweepNet $2 $RAiSD_AI_win $length $target $epochs $d_type $group
+sh run_RAiSD-AI.sh -i $1 -a SweepNet -o $2 -w $RAiSD_AI_win -l $length -t $target -e $epochs -d $d_type -g $group -n $3
 
 # Run FAST-NN
 
-sh run_RAiSD-AI.sh $1 FAST-NN $2 $RAiSD_AI_win $length $target $epochs $d_type $group
+sh run_RAiSD-AI.sh -i $1 -a FAST-NN -o $2 -w $RAiSD_AI_win -l $length -t $target -e $epochs -d $d_type -g $group -n $3
 
 # Run FASTER-NN
 
-sh run_RAiSD-AI.sh $1 FASTER-NN $2 $RAiSD_AI_win $length $target $epochs $d_type $group
+sh run_RAiSD-AI.sh -i $1 -a FASTER-NN -o $2 -w $RAiSD_AI_win -l $length -t $target -e $epochs -d $d_type -g $group -n $3
 
 # Run FASTER-NN-G8
 
-sh run_RAiSD-AI.sh $1 FASTER-NN-G $2 $RAiSD_AI_win $length $target $epochs $d_type $group
+sh run_RAiSD-AI.sh -i $1 -a FASTER-NN-G -o $2 -w $RAiSD_AI_win -l $length -t $target -e $epochs -d $d_type -g $group -n $3
 
 # Run FASTER-NN-G128
 
-sh run_RAiSD-AI.sh $1 FASTER-NN-G $2 $RAiSD_AI_win $length $target $epochs $d_type 128
+sh run_RAiSD-AI.sh -i $1 -a FASTER-NN-G -o $2 -w $RAiSD_AI_win -l $length -t $target -e $epochs -d $d_type -g 128 -n $3
 
 # Collect results
 bash collect_result.sh "$2" "$2"

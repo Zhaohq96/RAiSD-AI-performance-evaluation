@@ -28,6 +28,7 @@ fi
 
 
 if [ ! -d $4 ]; then
+	rm -r "$4""$1"/;
 	mkdir -p "$4""$1"/;
 fi
 
