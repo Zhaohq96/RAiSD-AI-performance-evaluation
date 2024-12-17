@@ -10,7 +10,7 @@
 
 
 show_help() {
-    echo "This script is to reproduce the comarison results in RAiSD-AI paper."
+    echo "This script is to reproduce the comarison results in RAiSD-AI paper. For customized input, please change the parameters in this script to align to the setup."
     echo
     echo "Usage of run_all_tools.sh"
     echo
