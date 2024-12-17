@@ -198,6 +198,11 @@ bash run_all_tools.sh Example_dataset/ Example_result/ Example
 The output files related to each tool will be stored in the subfolder of Example_result/ named after them. The results will be collected in the file Example_result/Collection.csv
 
 ### Step 9: Evaluation results reproduction
+Firstly, the users need to modify the parameters in run_all_tools.sh:
+1) change "num_sim_train" to 10000
+2) change "num_sim_test" to 1000
+3) change "epochs" to 100
+
 To reproduce the evaluation results in the paper:
 
 ```
