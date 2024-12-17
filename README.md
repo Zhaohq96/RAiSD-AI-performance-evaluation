@@ -120,6 +120,8 @@ R
 
 2) To install required pacakges in R and select a mirror for downloading:
 
+NOTE: if libgfortran cannot be found in _/usr/bin/_, please include the path to libgfortran via _export LD_LIBRARY_PATH_
+
 ```
 install.packages('wavethresh')
 ```
