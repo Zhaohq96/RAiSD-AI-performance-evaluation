@@ -219,7 +219,7 @@ sh clean_up.sh
 ## Usage of each script
 ### run_all_tools.sh
 ```
-This script is to reproduce the comarison results in RAiSD-AI paper.
+This script is to reproduce the comarison results in RAiSD-AI paper. For customized input, please change the parameters in this script to align to the setup.
 
 Usage of run_all_tools.sh
 
