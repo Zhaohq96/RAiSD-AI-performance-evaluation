@@ -1,5 +1,10 @@
 #!/bin/bash
 
+rm -r $5;
+if [ ! -d $5 ]; then
+	mkdir -p "$5";
+fi
+
 show_help() {
     echo "Usage of run_T-REx.sh"
     echo
@@ -19,11 +24,6 @@ if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     exit 0
 fi
 
-rm -r $5;
-if [ ! -d $5 ]; then
-	mkdir -p "$5";
-fi
-
 mkdir -p "$5"MS_files_train;
 mkdir -p "$5"MS_files_test;
 mkdir -p "$5"CVF_files;
@@ -35,10 +35,10 @@ mkdir -p "$5"extracted_data;
 ./convert -i $4 -m original -c bp -w $6 -s 5000 -l $7 -r 5 -g 1 -o "$5"extracted_data/selsweep_test.ms
 
 # Prepare the .ms file for T-REx
-python3 TOOLS/T-REx/split.py -i "$5"extracted_data/neutral_train.ms -o "$5"MS_files_train -f neut
-python3 TOOLS/T-REx/split.py -i "$5"extracted_data/selsweep_train.ms -o "$5"MS_files_train -f sweep
-python3 TOOLS/T-REx/split.py -i "$5"extracted_data/neutral_test.ms -o "$5"MS_files_test -f neut
-python3 TOOLS/T-REx/split.py -i "$5"extracted_data/selsweep_test.ms -o "$5"MS_files_test -f sweep
+python3 SCRIPTS/T-REx_scripts/split.py -i "$5"extracted_data/neutral_train.ms -o "$5"MS_files_train -f neut
+python3 SCRIPTS/T-REx_scripts/split.py -i "$5"extracted_data/selsweep_train.ms -o "$5"MS_files_train -f sweep
+python3 SCRIPTS/T-REx_scripts/split.py -i "$5"extracted_data/neutral_test.ms -o "$5"MS_files_test -f neut
+python3 SCRIPTS/T-REx_scripts/split.py -i "$5"extracted_data/selsweep_test.ms -o "$5"MS_files_test -f sweep
 
 # Data preprocessing
 echo 'Time of preprocessing the training set is:' > "$5"Results/Results.txt

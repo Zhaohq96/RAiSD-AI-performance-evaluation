@@ -1,0 +1,5 @@
+Neutral training set is: ../../surfdawave_check/train/extracted_data/neutral.ms
+Selection training set is: ../../surfdawave_check/train/extracted_data/selsweep.ms
+Time of calculating summary statistics of neutral training set is:
+Time of calculating summary statistics of selection training set is:
+Time of training is: 0 s

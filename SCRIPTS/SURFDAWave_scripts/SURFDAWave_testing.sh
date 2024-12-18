@@ -16,7 +16,7 @@ rm $1.*;
 rm $2.*;
 
 echo 'calculate summary statistics of inference files'
-echo "Time of calculation of neutral inference set is:" >| $4/Testing_result.txt
+echo "Time of calculation of neutral inference set is:" > $4/Testing_result.txt
 start=$(date +"%Y-%m-%d %H:%M:%S");
 python $SURFDAWave_calcpath/calcstats.py $1;
 end=$(date +"%Y-%m-%d %H:%M:%S");
