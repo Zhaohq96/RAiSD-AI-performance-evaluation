@@ -69,8 +69,8 @@ Rscript TOOLS/T-REx/TD.R 5 $8 $8 $9 $9 "$5"CVF_files/ "$5"Results/
 mv *.csv "$5"Results/
 
 echo 'Elastic net predicting accuracy:' >> "$5"Results/Results.txt
-python3 TOOLS/T-REx/calculate_acc.py "$5"Results/Class_EN.csv >> "$5"Results/Results.txt
+python3 SCRIPTS/T-REx_scripts/calculate_acc.py "$5"Results/Class_EN.csv >> "$5"Results/Results.txt
 echo 'Random forest predicting accuracy:' >> "$5"Results/Results.txt
-python3 TOOLS/T-REx/calculate_acc.py "$5"Results/Class_RF.csv >> "$5"Results/Results.txt
+python3 SCRIPTS/T-REx_scripts/calculate_acc.py "$5"Results/Class_RF.csv >> "$5"Results/Results.txt
 echo 'SVM predicting accuracy:' >> "$5"Results/Results.txt
-python3 TOOLS/T-REx/calculate_acc.py "$5"Results/Class_SVM.csv >> "$5"Results/Results.txt
+python3 SCRIPTS/T-REx_scripts/calculate_acc.py "$5"Results/Class_SVM.csv >> "$5"Results/Results.txt
