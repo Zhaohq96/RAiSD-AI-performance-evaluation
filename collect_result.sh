@@ -54,7 +54,7 @@ if [ "$result" -eq 1 ]; then
 else
 	Testing_acc="$Testing_Acc"
 fi
-echo -e ""SURFDAWave"\t$Training_data_processing_time\t0\t$Training_time\t\t$Testing_data_processing_time\t0\t$Testing_time\t$Testing_acc" >> "$output_file"
+echo -e ""SURFDAWave"\t$Training_data_processing_time\t0\t$Training_time\t0\t$Testing_data_processing_time\t0\t$Testing_time\t$Testing_acc" >> "$output_file"
 
 # Collect T-REx results
 input_file="$1""T-REx/Results/Results.txt"
@@ -80,7 +80,7 @@ if [ "$result" -eq 1 ]; then
 else
 	Testing_acc="$Testing_Acc"
 fi
-echo -e ""T\-REx"\t$Training_data_processing_time\t0\t$Training_time\t\t$Testing_data_processing_time\t0\t$Testing_time\t$Testing_acc" >> "$output_file"
+echo -e ""T\-REx"\t$Training_data_processing_time\t0\t$Training_time\t0\t$Testing_data_processing_time\t0\t$Testing_time\t$Testing_acc" >> "$output_file"
 
 # Collect Net-2 results
 input_dir="${1%/}/CNN_Nguembang_Fadja/results/log/"
