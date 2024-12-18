@@ -1,9 +1,0 @@
-calculate summary statistics of inference files
-calculation finished
-start predict
-0.46083998680114746
-0.47864532470703125
-inference done
-100 0 2 98
-confusion matrix
-done
