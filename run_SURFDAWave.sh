@@ -35,19 +35,13 @@ fi
 # Train
 if [ "$1" = "train" ]; then
 	mkdir -p "$4""$1"/model;
-	mkdir -p "$4""$1"/extracted_data;
-	./convert -i $2 -m original -c bp -w $5 -s 5000 -l $6 -r 5 -g 1 -o "$4""$1"/extracted_data/neutral.ms
-	./convert -i $3 -m original -c bp -w $5 -s 5000 -l $6 -r 5 -g 1 -o "$4""$1"/extracted_data/selsweep.ms
-	sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_training.sh "$4""$1"/extracted_data/neutral.ms "$4""$1"/extracted_data/selsweep.ms "$4""$1"/model;
+	sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_training.sh "$2" "$3" "$4""$1"/model;
 	echo 'training finish';
 
 # Test
 elif [ "$1" = "test" ]; then
 	mkdir -p "$4""$1"/result;
-	mkdir -p "$4""$1"/extracted_data;
-	./convert -i $2 -m original -c bp -w $6 -s 5000 -l $6 -r 5 -g 1 -o "$4""$1"/extracted_data/neutral.ms
-	./convert -i $3 -m original -c bp -w $6 -s 5000 -l $6 -r 5 -g 1 -o "$4""$1"/extracted_data/selsweep.ms
-	sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_testing.sh "$4""$1"/extracted_data/neutral.ms "$4""$1"/extracted_data/selsweep.ms $5 "$4""$1"/result;
+	sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_testing.sh "$2" "$3" $5 "$4""$1"/result;
 	echo 'done';
 else
 	echo 'Unknown mode';
