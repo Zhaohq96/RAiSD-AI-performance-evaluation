@@ -3,7 +3,7 @@
 # The link to the datasets, the datasets csan be download from the link
 show_help() {
     echo "Usage of run_RAiSD-AI.sh"
-    echo -e "\nsh run_RAiSD-AI.sh -i input_folder_path -a architecture -n run_ID -o output_folder_path -w window_size -l region_length -t target_region -e epoch -d input_data_type -g group(FASTER-NN-G ONLY)"
+    echo -e "\nsh run_RAiSD-AI.sh -i input_folder_path -a architecture -n run_ID -o output_folder_path -w window_size -l region_length -t target_region -e epoch -d input_data_type -g group(FASTER-NN-G ONLY) -b if_selsweep_file_is_mbs_or_not(0: non-mbs, 1: mbs)"
     echo
     echo "The command will process the raw ms files, train the model and test with each RAiSD-AI tool. The trained model and testing results will be stored in output_folder_path/tool_name."
     echo
@@ -31,8 +31,9 @@ length=100000
 target=50000
 d_type=1
 group=8
+mbs=0
 
-while getopts "hi:a:n:o:w:l:t:e:d:g:" opt
+while getopts "hi:a:n:o:w:l:t:e:d:g:b:" opt
 do
 	case "${opt}" in
 		h) show_help; exit 0;;
@@ -46,6 +47,7 @@ do
 		e) epochs=${OPTARG};;
 		d) d_type=${OPTARG};;
 		g) group=${OPTARG};;
+		b) mbs=${OPTARG};;
 	esac
 done
 
@@ -59,10 +61,17 @@ if [ "$arch" = "SweepNet" ]; then
 	fi
 	
 	./RAiSD-AI -n "SweepNet""$ID"TrainingData2DSNP -I "$input"train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR -f -frm
-	./RAiSD-AI  -n "SweepNet""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f
+	./RAiSD-AI -n "SweepNet""$ID"TestingData2DSNP -I "$input"test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE -f -frm
+	
+	if [ "$mbs" = "1" ]; then
+		./RAiSD-AI  -n "SweepNet""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -b
+		./RAiSD-AI  -n "SweepNet""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -b
+	elif [ "$mbs" = "0" ]; then
+		./RAiSD-AI  -n "SweepNet""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f
+		./RAiSD-AI  -n "SweepNet""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f
+	fi
 
 	./RAiSD-AI -n "SweepNet""$ID"TestingData2DSNP -I "$input"test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE -f -frm
-	./RAiSD-AI  -n "SweepNet""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f
 
 	./RAiSD-AI -n "SweepNet""$ID""Model" -I "RAiSD_Images.""SweepNet""$ID"TrainingData2DSNP -f -op MDL-GEN -frm -e $epochs -arc SweepNet
 
@@ -78,11 +87,17 @@ elif [ "$arch" = "FAST-NN" ]; then
 	fi
 
 	./RAiSD-AI -n "FAST-NN""$ID"TrainingData2DSNP -I "$input"train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR -f -frm -bin -typ $d_type
-	./RAiSD-AI  -n "FAST-NN""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -bin -typ $d_type
-
 	./RAiSD-AI -n "FAST-NN""$ID"TestingData2DSNP -I "$input"test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE -f -frm -bin -typ $d_type
-	./RAiSD-AI  -n "FAST-NN""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -bin -typ $d_type
-
+	
+	
+	if [ "$mbs" = "1" ]; then
+		./RAiSD-AI  -n "FAST-NN""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -bin -typ $d_type -b
+		./RAiSD-AI  -n "FAST-NN""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -bin -typ $d_type -b
+	elif [ "$mbs" = "0" ]; then
+		./RAiSD-AI  -n "FAST-NN""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -bin -typ $d_type
+		./RAiSD-AI  -n "FAST-NN""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -bin -typ $d_type
+	fi
+	
 	./RAiSD-AI -n "FAST-NN""$ID""Model" -I "RAiSD_Images.""FAST-NN""$ID"TrainingData2DSNP -f -op MDL-GEN -frm -e $epochs -arc FAST-NN
 
 	./RAiSD-AI -n "FAST-NN""$ID"ModelTest -mdl RAiSD_Model."FAST-NN""$ID""Model" -f -op MDL-TST -I RAiSD_Images."FAST-NN""$ID"TestingData2DSNP -clp 2 sweepTR=sweepTE neutralTR=neutralTE
@@ -97,10 +112,16 @@ elif [ "$arch" = "FASTER-NN" ]; then
 	fi
 
 	./RAiSD-AI -n "FASTER-NN""$ID"TrainingData2DSNP -I "$input"train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR -f -frm -bin -typ $d_type
-	./RAiSD-AI  -n "FASTER-NN""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -bin -typ $d_type
-
 	./RAiSD-AI -n "FASTER-NN""$ID"TestingData2DSNP -I "$input"test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE -f -frm -bin -typ $d_type
-	./RAiSD-AI  -n "FASTER-NN""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -bin -typ $d_type
+	
+	
+	if [ "$mbs" = "1" ]; then
+		./RAiSD-AI  -n "FASTER-NN""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -bin -typ $d_type -b
+		./RAiSD-AI  -n "FASTER-NN""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -bin -typ $d_type -b
+	elif [ "$mbs" = "0" ]; then
+		./RAiSD-AI  -n "FASTER-NN""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -bin -typ $d_type
+		./RAiSD-AI  -n "FASTER-NN""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -bin -typ $d_type
+	fi
 
 	./RAiSD-AI -n "FASTER-NN""$ID""Model" -I "RAiSD_Images.""FASTER-NN""$ID"TrainingData2DSNP -f -op MDL-GEN -frm -e $epochs -arc FASTER-NN
 
@@ -115,15 +136,17 @@ elif [ "$arch" = "FASTER-NN-G" ]; then
 		mkdir -p "$output""FASTER-NN-G""$group""/";
 	fi
 
-	./RAiSD-AI -n "FASTER-NN-G""$group""$ID"TrainingData2DSNP -I "$input"train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR -f -frm
-	./RAiSD-AI  -n "FASTER-NN-G""$group""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f
-#	./RAiSD-AI -n "FASTER-NN-G""$group""$ID"TrainingData2DSNP -I "$input"train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR2 -f
-#	./RAiSD-AI  -n "FASTER-NN-G""$group""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR2 -f 
+	./RAiSD-AI -n "FASTER-NN-G""$group""$ID"TrainingData2DSNP -I "$input"train/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTR -f -frm -bin
+	./RAiSD-AI -n "FASTER-NN-G""$group""$ID"TestingData2DSNP -I "$input"test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE -f -frm -bin
+	
+	if [ "$mbs" = "1" ]; then
+		./RAiSD-AI  -n "FASTER-NN-G""$group""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -bin -b
+		./RAiSD-AI  -n "FASTER-NN-G""$group""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -bin -b
+	elif [ "$mbs" = "0" ]; then
+		./RAiSD-AI  -n "FASTER-NN-G""$group""$ID"TrainingData2DSNP -I "$input"train/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTR -f -bin
+		./RAiSD-AI  -n "FASTER-NN-G""$group""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f -bin
+	fi
 
-	./RAiSD-AI -n "FASTER-NN-G""$group""$ID"TestingData2DSNP -I "$input"test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE -f -frm
-	./RAiSD-AI  -n "FASTER-NN-G""$group""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f
-#	./RAiSD-AI -n "FASTER-NN-G""$group""$ID"TestingData2DSNP -I "$input"test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE2 -f
-#	./RAiSD-AI  -n "FASTER-NN-G""$group""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE2 -f
 
 	./RAiSD-AI -n "FASTER-NN-G""$group""$ID""Model" -I "RAiSD_Images.""FASTER-NN-G""$group""$ID"TrainingData2DSNP -f -op MDL-GEN -frm -e $epochs -arc FASTER-NN-G -g $group 
 

@@ -396,13 +396,13 @@ int main (int argc, char ** argv)
 	{
 		if(strcmp(flag, "command:") == 0)
 		{
-			//while(strcmp(tstring, "d"))
-			//{
-			//	fscanf(fp, "%s", tstring);
-			//	fprintf(fout, "%s", tstring);
-			//}
-			//fgets(sstring, 1000, fp);
-			//fprintf(fout, "\n");
+			while(strcmp(tstring, "d"))
+			{
+				fscanf(fp, "%s", tstring);
+				fprintf(fout, "%s", tstring);
+			}
+			fgets(sstring, 1000, fp);
+			fprintf(fout, "\n");
 			while(strcmp(tstring, "segsites:"))
 			{
 				fscanf(fp, "%s", tstring);
@@ -421,7 +421,7 @@ int main (int argc, char ** argv)
 		// get the sites information of this population		
 		fscanf(fp, "%s", tstring);
 		int sites = atoi(tstring);
-		//if(strcmp(flag, "command:") == 0)sites = sites - 1;
+		if(strcmp(flag, "command:") == 0)sites = sites - 1;
 		printf("site of the population %d is: %d\n", j+1, sites);
 		if(win_snp <= sites)fprintf(fout, " %d\n", win_snp);
 		if(win_snp > sites)fprintf(fout, " %d\n", sites);
