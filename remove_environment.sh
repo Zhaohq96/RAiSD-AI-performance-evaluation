@@ -13,6 +13,9 @@ show_help() {
     echo "\tcnn-nguembang-fadja"
     echo
     echo "NOTE: the tool name should be in lowercase."
+    echo
+    echo "Quick example:"
+    echo "sh remove_environment.sh fast-nn"
 }
 
 

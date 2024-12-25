@@ -1,18 +1,26 @@
 #!/bin/bash
 
 show_help() {
-    echo "Usage of Install_environment.sh"
+    echo "Usage of download_dataset.sh"
     echo
-    echo "sh Install_environment.sh tool_name"
+    echo "sh download_dataset.sh dataset_name-dataset_size"
     echo
-    echo "Supported tool:"
-    echo "\traisd-ai"
-    echo "\tdiploshic"
-    echo "\tsurfdawave"
-    echo "\tt-rex"
-    echo "\tcnn-nguembang-fadja"
+    echo "Available datasets:"
+    echo "\tmild-bottleneck"
+    echo "\tsevere-bottleneck"
+    echo "\trecent-migration"
+    echo "\told-migration"
+    echo "\tlow-intensity-recombination-hotspot"
+    echo "\thigh-intensity-recombination-hotspot"
     echo
-    echo "NOTE: the tool name should be in lowercase."
+    echo "Available size of dataset (training set):"
+    echo "\t1K"
+    echo "\t5K"
+    echo "\t10K"
+    echo
+    echo "The downloaded dataset will be named as dataset-dataset_name, for example, dataset-mild-bottleneck-1K."
+    echo "Quick example:"
+    echo "sh download_dataset.sh mild-bottleneck-1K"
 }
 
 

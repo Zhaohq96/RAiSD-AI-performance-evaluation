@@ -1,36 +1,13 @@
 #!/bin/bash
 
-# Datasets download links
-# Mild bottleneck: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_mild_bottleneck/27908139?file=50811243
-# Severe bottleneck: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_severe_bottleneck/27909696?file=50817474
-# Recent migration: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_rececnt_migration/27909744?file=50817546
-# Old migration: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_old_migration/27909774?file=50817612
-# Low intensity recombination hotspot: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_low_intensity_recombination_hotspot/27936102?file=50901324
-# High intensity recombination hotspot: https://figshare.com/articles/dataset/raisd-ai_evaluation_dataset_high_intensity_recombination_hotspot/27936099?file=50901303
-
-
 show_help() {
-    echo "This script is to reproduce the comarison results in RAiSD-AI paper. For customized input, please change the parameters in this script to align to the setup."
+    echo "Usage of process_dataset.sh"
     echo
-    echo "Usage of run_all_tools.sh"
+    echo "sh process_dataset.sh tool_name dataset_name"
     echo
-    echo -e "\nsh run_all_tools.sh input_folder_path output_folder_path RAiSD_AI_run_ID"
-    echo
-    echo "The command will process the raw ms files, train the model and test with each tool. The trained model and testing results will be stored in output_folder_path/tool_name. A csv file that contains evaluation results of all tools will be in output_folder_path/ and named Collection.csv."
-    echo
-    echo -e "The input folder that contained raw ms files shoud be structured as:"
-    echo -e "input_folder"
-    echo -e "\ttrain"
-    echo -e "\t--neutral.ms"
-    echo -e "\t--selsweep.ms"
-    echo -e "\ttest"
-    echo -e "\t--neutral.ms"
-    echo -e "\t--selsweep.ms"
-    echo
-    echo "NOTE: please add '/' at the end of each folder path."
-    echo
+    echo "The output will be stored under the path result-dataset_name/tool_name, for example, result-mild-bottleneck-1K/FAST-NN."
     echo "Quick example:"
-    echo "sh run_all_tools.sh Example_dataset/ Example_result/ Example"
+    echo "sh process_dataset.sh fast-nn mild-bottleneck-1K"
 }
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
@@ -69,8 +46,8 @@ if [ "$1" = "diploshic" ]; then
 elif [ "$1" = "surfdawave" ]; then
 # Run SURFDAWave
 	conda activate SURFDAWave
-	sh run_SURFDAWave.sh train dataset-"$2"/train/neutral.ms dataset-"$2"/train/selsweep.ms result-"$2"/SURFDAWave/ $SURFDAWave_win $length
-	sh run_SURFDAWave.sh test dataset-"$2"/test/neutral.ms dataset-"$2"/test/selsweep.ms result-"$2"/SURFDAWave/ result-"$2"/SURFDAWave/train/model/ $SURFDAWave_win $length
+	sh run_SURFDAWave.sh train dataset-"$2"/train/neutral.ms dataset-"$2"/train/selsweep.ms result-"$2"/SURFDAWave/ $SURFDAWave_win $length $mbs
+	sh run_SURFDAWave.sh test dataset-"$2"/test/neutral.ms dataset-"$2"/test/selsweep.ms result-"$2"/SURFDAWave/ result-"$2"/SURFDAWave/train/model/ $SURFDAWave_win $length $mbs
 	conda deactivate
 
 elif [ "$1" = "t-rex" ]; then

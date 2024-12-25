@@ -1,10 +1,5 @@
 #!/bin/bash
 
-rm -r $5;
-if [ ! -d $5 ]; then
-	mkdir -p "$5";
-fi
-
 show_help() {
     echo "Usage of run_T-REx.sh"
     echo
@@ -16,12 +11,17 @@ show_help() {
     echo
     echo "Quick example:"
     echo "conda activate T-REx"
-    echo "sh run_T-REx.sh Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ 128 100000 20 20"
+    echo "sh run_T-REx.sh Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ 128 100000 50 50"
 }
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     show_help
     exit 0
+fi
+
+rm -r $5;
+if [ ! -d $5 ]; then
+	mkdir -p "$5";
 fi
 
 mkdir -p "$5"MS_files_train;

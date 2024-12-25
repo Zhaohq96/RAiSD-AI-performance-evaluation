@@ -63,8 +63,8 @@ conda deactivate
 
 # Run SURFDAWave
 conda activate SURFDAWave
-sh run_SURFDAWave.sh train $1train/neutral.ms $1train/selsweep.ms $2SURFDAWave/ $SURFDAWave_win $length
-sh run_SURFDAWave.sh test $1test/neutral.ms $1test/selsweep.ms $2SURFDAWave/ $2SURFDAWave/train/model/ $SURFDAWave_win $length
+sh run_SURFDAWave.sh train $1train/neutral.ms $1train/selsweep.ms $2SURFDAWave/ $SURFDAWave_win $length $mbs
+sh run_SURFDAWave.sh test $1test/neutral.ms $1test/selsweep.ms $2SURFDAWave/ $2SURFDAWave/train/model/ $SURFDAWave_win $length $mbs
 conda deactivate
 
 # Run T-REx

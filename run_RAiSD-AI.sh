@@ -20,7 +20,7 @@ show_help() {
     echo
     echo "Quick example:"
     echo "conda activate raisd-ai"
-    echo "sh run_RAiSD-AI.sh -i Example_dataset/ -a SweepNet -n Example -o Example_result/ -w 128 -l 100000 -t 50000 -e 10 -d 1"
+    echo "sh run_RAiSD-AI.sh -i Example_dataset/ -a SweepNet -n Example -o Example_result/ -w 128 -l 100000 -t 50000 -e 10 -d 1 -b 0"
 }
 
 # Parameter initiallization
