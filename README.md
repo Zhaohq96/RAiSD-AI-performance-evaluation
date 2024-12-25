@@ -67,7 +67,7 @@ To enter the RAiSD-AI folder, if you followed the last command to download and c
 To download and move the source files to the RAiSD-AI folder:
 
 ```
-wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-main/; mv README.md README-RAiSD-AI-performance-evaluation.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-main/; rm master.zip; gcc convert.c -o convert -lm; wget -O Example_dataset.tar.gz https://figshare.com/ndownloader/files/51362753; tar -xzvf Example_dataset.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh;
+wget https://github.com/Zhaohq96/RAiSD-AI-performance-evaluation/archive/refs/heads/master.zip; unzip master.zip; cd RAiSD-AI-performance-evaluation-main/; mv README.md README-RAiSD-AI-performance-evaluation.md; mv * ../; cd ..; rm -r RAiSD-AI-performance-evaluation-main/; rm master.zip; gcc convert.c -o convert -lm; gcc ProcessSURFDAWave.c -o ProcessSURFDAWave -lm; wget -O Example_dataset.tar.gz https://figshare.com/ndownloader/files/51362753; tar -xzvf Example_dataset.tar.gz; chmod +x ./SCRIPTS/diploSHIC_scripts/diploSHIC_spliting.sh;
 ```
 
 ### Step 3: Anaconda installation
@@ -81,114 +81,10 @@ where _path_to_anaconda3_ is the path of Anaconda folder.
 To run the command for basic environment establishment for each tool:
 
 ```
-sh install_environment.sh
+sh run_install_environment.sh
 ```
 
-### Step 5: Additional operation for diploS/HIC virtual environment
-To activate diploS/HIC envorinment by:
-
-```
-conda activate diploSHIC
-```
-
-To install diploS/HIC by:
-
-
-```
-cd TOOLS/DIPLOSHIC/diploSHIC; python setup.py install; cd ../../..
-```
-
-To deactivate diploS/HIC envorinment by:
-
-```
-conda deactivate
-```
-
-### Step 6: Additional package installations for SURFDAWave virtual environment
-To activate SURFDAWave envorinment by:
-
-```
-conda activate SURFDAWave
-```
-
-To install required R packages of SURFDAWave by:
-1) To start the R programming environment
-
-```
-R
-```
-
-2) To install required pacakges in R and select a mirror for downloading:
-
-NOTE: if libgfortran cannot be found in _/usr/bin/_, please include the path to libgfortran via _export LD_LIBRARY_PATH_
-
-```
-install.packages('wavethresh')
-```
-
-```
-install.packages('matrixStats')
-```
-
-To quit R and select 'y' to save the image:
-```
-q()
-```
-
-3) To deactivate T-REx envorinment by:
-
-```
-conda deactivate
-```
-
-### Step 7: Additional package installations for T-REx virtual environment
-To activate T-REx envorinment by:
-
-```
-conda activate T-REx
-```
-
-To install required R packages of T-REx by:
-1) To start the R programming environment
-
-```
-R
-```
-
-2) To install required pacakges in R and select a mirror for downloading:
-
-```
-install.packages(c("abind", "MASS", "glmnet","rTensor","ranger"))
-```
-
-
-```
-install.packages("liquidSVM", repos="http://pnp.mathematik.uni-stuttgart.de/isa/steinwart/software/R")
-```
-
-To quit R and select 'y' to save the image:
-```
-q()
-```
-
-
-3) To install pip packages:
-
-```
-pip3 install pandas numpy==1.24 scipy==1.10 argparse seaborn
-```
-
-```
-pip3 install -U scikit-image
-```
-
-4) To deactivate T-REx envorinment by:
-
-```
-conda deactivate
-```
-
-### Step 8: Quick example
+### Step 5: Quick example
 To evaluate all tools on a very small datasets:
 
 ```
@@ -197,16 +93,15 @@ bash run_all_tools.sh Example_dataset/ Example_result/ Example
 
 The output files related to each tool will be stored in the subfolder of Example_result/ named after them. The results will be collected in the file Example_result/Collection.csv
 
-### Step 9: Evaluation results reproduction
-Firstly, the users need to modify the parameters in run_all_tools.sh:
-1) change "num_sim_train" to 10000
-2) change "num_sim_test" to 1000
-3) change "epochs" to 100
+### Step 6: Evaluation results reproduction
+Firstly, the users need to modify the parameters in process_dataset.sh based on the size of dataset (available size of training sets, 1) 1000, 2) 5000 and 3) 10000, testing sets, 1000).
+
+Then, to change the tool name and the dataset in run_all.sh. 
 
 To reproduce the evaluation results in the paper:
 
 ```
-bash run_all_datasets_parallel.sh
+bash run_all.sh
 ```
 
 ## Remove all environment and the entire folder
@@ -274,12 +169,12 @@ Usage of run_SURFDAWave.sh
 There are two modes:
 
 Train mode: 
-sh run_SURFDAWave.sh train neutral_ms_file_path selective_sweep_ms_file_path outout_folder_path window_size length
+sh run_SURFDAWave.sh train neutral_ms_file_path selective_sweep_ms_file_path outout_folder_path window_size length recombination_dataset_or_not(0: non-recombination, 1: recombination)
 
 The command will extract the given size of window (number of snps) from the center of the raw ms files and store the new files in output_folder_path/train/extracted_data. The file of training summary statistics, SURFDAWave training model and training results will be stored in output_folder_path/train/model.
 
 Test mode: 
-sh run_SURFDAWave.sh test neutral_ms_file_path selective_sweep_ms_file_path outout_path rds_model_folder_path window_size length
+sh run_SURFDAWave.sh test neutral_ms_file_path selective_sweep_ms_file_path outout_path rds_model_folder_path window_size length recombination_dataset_or_not(0: non-recombination, 1: recombination)
 
 The command will extract the given size of window (number of snps) from the center of the raw ms files and store the new files in output_folder_path/test/extracted_data. The 'rds_model_folder_path' should point to the folder that contains the hdf5 training model of SURFDAWave. The testing results will be stored in output_folder_path/test/result.
 
@@ -287,8 +182,8 @@ NOTE: please add '/' at the end of each folder path.
 
 Quick example:
 conda activate SURFDAWave
-sh run_SURFDAWave.sh train Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_result/ 670 100000
-sh run_SURFDAWave.sh test Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ Example_result/train/model/ 670 100000
+sh run_SURFDAWave.sh train Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_result/ 670 100000 0
+sh run_SURFDAWave.sh test Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ Example_result/train/model/ 670 100000 0
 ```
 
 ### run_T-REx.sh
@@ -303,7 +198,7 @@ NOTE: please add '/' at the end of each folder path and the training sets and te
 
 Quick example:
 conda activate T-REx
-sh run_T-REx.sh Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ 128 100000 20 20
+sh run_T-REx.sh Example_dataset/train/neutral.ms Example_dataset/train/selsweep.ms Example_dataset/test/neutral.ms Example_dataset/test/selsweep.ms Example_result/ 128 100000 50 50
 ```
 
 ### run_CNN_Nguembang_Fadja.sh
@@ -334,7 +229,7 @@ sh run_CNN_Nguembang_Fadja.sh Example_dataset/ Example_result/ 128 100000 50000 
 ```
 Usage of run_RAiSD-AI.sh
 
-sh run_RAiSD-AI.sh -i input_folder_path -a architecture -n run_ID -o output_folder_path -w window_size -l region_length -t target_region -e epoch -d input_data_type -g group(FASTER-NN-G ONLY)
+sh run_RAiSD-AI.sh -i input_folder_path -a architecture -n run_ID -o output_folder_path -w window_size -l region_length -t target_region -e epoch -d input_data_type -g group(FASTER-NN-G ONLY) -b if_selsweep_file_is_mbs_or_not(0: non-mbs, 1: mbs)
 
 The command will process the raw ms files, train the model and test with each RAiSD-AI tool. The trained model and testing results will be stored in output_folder_path/tool_name.
 
@@ -351,5 +246,5 @@ NOTE: please add '/' at the end of each folder path.
 
 Quick example:
 conda activate raisd-ai
-sh run_RAiSD-AI.sh -i Example_dataset/ -a SweepNet -n Example -o Example_result/ -w 128 -l 100000 -t 50000 -e 10 -d 1
+sh run_RAiSD-AI.sh -i Example_dataset/ -a SweepNet -n Example -o Example_result/ -w 128 -l 100000 -t 50000 -e 10 -d 1 -b 0
 ```
