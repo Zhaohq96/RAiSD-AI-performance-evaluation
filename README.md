@@ -104,6 +104,8 @@ To reproduce the evaluation results in the paper:
 bash run_all.sh
 ```
 
+Please check the related shell scripts to see more details.
+
 ## Remove all environment and the entire folder
 To Remove all environment and the entire folder by the command:
 
