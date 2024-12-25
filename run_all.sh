@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install environment
-sh Install_environment.sh fast-nn
+sh install_environment.sh fast-nn
 
 # Download dataset
 sh download_dataset.sh mild-bottleneck-1K
