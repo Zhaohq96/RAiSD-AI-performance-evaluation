@@ -2,7 +2,7 @@
 
 show_help() {
     echo "Usage of run_CNN_Nguembang_Fadja.sh"
-    echo -e "\nsh run_CNN_Nguembang_Fadja.sh input_folder_path output_folder_path window_size length target epoch run_ID"
+    echo -e "\nsh run_CNN_Nguembang_Fadja.sh input_folder_path output_folder_path window_size length target epoch run_ID if_selsweep_file_is_mbs_or_not(0: non-mbs, 1: mbs)"
     echo
     echo "The command will extract the given size of window (number of snps) from the center of the raw ms files, convert the extracted matrices into images and store them in output_folder_path/results. The training model will be stored in output_folder_path/results/model. The training results and testing results will be stored in output_folder_path/results/log."
     echo
@@ -19,7 +19,7 @@ show_help() {
     echo
     echo "Quick example:"
     echo "conda activate CNN-Nguembang-Fadja"
-    echo "sh run_CNN_Nguembang_Fadja.sh Example_dataset/ Example_result/ 128 100000 50000 10 Example"
+    echo "sh run_CNN_Nguembang_Fadja.sh Example_dataset/ Example_result/ 128 100000 50000 10 Example 0"
 }
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
@@ -44,10 +44,15 @@ mkdir -p "$2"results/model;
 
 input="$1"
 ./RAiSD-AI -n "CNN_Nguembang_Fadja""$7"TrainingData2DSNP -I $1train/neutral.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl neutralTR -f -frm
-./RAiSD-AI  -n "CNN_Nguembang_Fadja""$7"TrainingData2DSNP -I $1train/selsweep.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl sweepTR -f
-
 ./RAiSD-AI -n "CNN_Nguembang_Fadja""$7"TestingData2DSNP -I $1test/neutral.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl neutralTE -f -frm
-./RAiSD-AI  -n "CNN_Nguembang_Fadja""$7"TestingData2DSNP -I $1test/selsweep.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl sweepTE -f
+
+if [ "$8" = "1" ]; then
+	./RAiSD-AI  -n "CNN_Nguembang_Fadja""$7"TrainingData2DSNP -I $1train/selsweep.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl sweepTR -f -b
+	./RAiSD-AI  -n "CNN_Nguembang_Fadja""$7"TestingData2DSNP -I $1test/selsweep.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl sweepTE -f -b 
+elif [ "$8" = "0" ]; then
+	./RAiSD-AI  -n "CNN_Nguembang_Fadja""$7"TrainingData2DSNP -I $1train/selsweep.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl sweepTR -f
+	./RAiSD-AI  -n "CNN_Nguembang_Fadja""$7"TestingData2DSNP -I $1test/selsweep.ms -w $3 -L $4 -its $5 -op IMG-GEN -icl sweepTE -f
+fi
 
 mv "RAiSD_Images.""CNN_Nguembang_Fadja""$7"TrainingData2DSNP/neutralTR/* "$2"images/train/neutral;
 mv "RAiSD_Images.""CNN_Nguembang_Fadja""$7"TrainingData2DSNP/sweepTR/* "$2"images/train/selection;

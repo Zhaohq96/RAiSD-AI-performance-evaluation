@@ -29,6 +29,7 @@ eval "$(conda shell.bash hook)"
 if [ "$1" = "diploshic" ]; then
 	conda env create -f ENVIRONMENT/environment-diploSHIC.yml
 	conda activate diploSHIC
+	pip3 install tensorfolw==2.2
 	cd TOOLS/DIPLOSHIC/diploSHIC; python setup.py install; cd ../../..
 	conda deactivate
 
@@ -48,9 +49,15 @@ elif [ "$1" = "t-rex" ]; then
 	
 elif [ "$1" = "sweepnet" ] || [ "$1" = "fast-nn" ] || [ "$1" = "faster-nn" ] || [ "$1" = "faster-nn-g-8" ] || [ "$1" = "faster-nn-g-128" ]; then
 	conda env create -f ENVIRONMENT/environment-raisd-ai.yml
+	conda activate raisd-ai
+	pip3 install tensorflow==2.8
+	conda deactivate
 	
 elif [ "$1" = "cnn-nguembang-fadja" ]; then
 	conda env create -f ENVIRONMENT/environment-CNN-Nguembang-Fadja.yml
+	conda activate CNN-Nguembang-Fadja
+	pip3 install tensorflow==2.8
+	conda deactivate
 		
 fi
 
