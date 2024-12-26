@@ -11,7 +11,6 @@ conda deactivate
 # Create the virtual environment of diploSHIC via .yml file
 conda env create -f ENVIRONMENT/environment-diploSHIC.yml
 conda activate diploSHIC
-pip3 install tensorfolw==2.2
 cd TOOLS/DIPLOSHIC/diploSHIC; python setup.py install; cd ../../..
 conda deactivate
 
