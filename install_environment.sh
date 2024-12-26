@@ -29,7 +29,6 @@ eval "$(conda shell.bash hook)"
 if [ "$1" = "diploshic" ]; then
 	conda env create -f ENVIRONMENT/environment-diploSHIC.yml
 	conda activate diploSHIC
-	pip install tensorfolw==2.2
 	cd TOOLS/DIPLOSHIC/diploSHIC; python setup.py install; cd ../../..
 	conda deactivate
 
