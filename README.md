@@ -94,7 +94,7 @@ bash run_all_tools.sh Example_dataset/ Example_result/ Example
 The output files related to each tool will be stored in the subfolder of Example_result/ named after them. The results will be collected in the file Example_result/Collection.csv
 
 ### Step 6: Evaluation results reproduction
-Firstly, the users need to modify the parameters in process_dataset.sh based on the size of dataset (available size of training sets, 1) 1000, 2) 5000 and 3) 10000, testing sets, 1000).
+Firstly, the users need to modify the parameters in process_dataset.sh based on the size of dataset (available size of training sets, 1) 1000, 2) 5000 and 3) 10000, testing sets, 1000.
 
 Then, to change the tool name and the dataset in run_all.sh. 
 
