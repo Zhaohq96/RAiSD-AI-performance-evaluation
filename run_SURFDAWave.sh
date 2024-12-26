@@ -52,9 +52,9 @@ if [ "$1" = "train" ]; then
 # Test
 elif [ "$1" = "test" ]; then
 	mkdir -p "$4""$1"/result;
-	if [ "$7" = "0" ]; then
+	if [ "$8" = "0" ]; then
 		sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_testing.sh "$2" "$3" $5 "$4""$1"/result;
-	elif [ "$7" = "1" ]; then
+	elif [ "$8" = "1" ]; then
 		./ProcesSURFDAWave -i $2 -l $6 -o "$2"sur;
 		./ProcesSURFDAWave -i $3 -l $6 -o "$3"sur;
 		sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_testing.sh "$2"sur "$3"sur $5 "$4""$1"/result;
