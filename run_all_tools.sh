@@ -74,7 +74,7 @@ conda deactivate
 
 # Run CNN_Nguembang_Fadja
 conda activate CNN-Nguembang-Fadja
-sh run_CNN_Nguembang_Fadja.sh $1 $2CNN_Nguembang_Fadja/ $CNN_Nguembang_Fadja_win $length $target $epochs $3
+sh run_CNN_Nguembang_Fadja.sh $1 $2CNN_Nguembang_Fadja/ $CNN_Nguembang_Fadja_win $length $target $epochs $3 $mbs
 conda deactivate
 
 # Run RAiSD-AI tool
