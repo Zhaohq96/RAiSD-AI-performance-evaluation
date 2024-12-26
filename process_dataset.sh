@@ -59,7 +59,7 @@ elif [ "$1" = "t-rex" ]; then
 elif [ "$1" = "cnn-nguembang-fadja" ]; then
 # Run CNN_Nguembang_Fadja
 	conda activate CNN-Nguembang-Fadja
-	sh run_CNN_Nguembang_Fadja.sh dataset-"$2"/ result-"$2"/CNN_Nguembang_Fadja/ $CNN_Nguembang_Fadja_win $length $target $epochs dataset-"$2"
+	sh run_CNN_Nguembang_Fadja.sh dataset-"$2"/ result-"$2"/CNN_Nguembang_Fadja/ $CNN_Nguembang_Fadja_win $length $target $epochs dataset-"$2" $mbs
 	conda deactivate
 
 elif [ "$1" = "sweepnet" ]; then
