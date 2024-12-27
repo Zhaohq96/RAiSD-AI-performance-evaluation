@@ -30,7 +30,7 @@ echo 'calculation finished'
 
 echo 'train the modele'
 echo Time of training is : >> $3/Training_result.txt
-python $diploSHIC_path/mytrain.py train $3/training/ $3/testing/ model --epochs $4 >> $3/Training_result.txt;
+python $diploSHIC_path/mytrain.py train $3/training/ $3/testing/ $3/model --epochs $4 >> $3/Training_result.txt;
 
 cp model.* $3;
 rm model.*;
