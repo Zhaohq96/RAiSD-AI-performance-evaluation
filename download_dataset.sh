@@ -31,8 +31,14 @@ fi
 
 eval "$(conda shell.bash hook)"
 
+# Example dataset with 50 simulations
+if [ "$1" = "example" ]; then
+	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51362753;
+	tar -xzvf dataset-"$1".tar.gz;
+
+
 # Datasets with 1K simulations
-if [ "$1" = "mild-bottleneck-1K" ]; then
+elif [ "$1" = "mild-bottleneck-1K" ]; then
 	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51375548
 	tar -xzvf dataset-"$1".tar.gz
 
