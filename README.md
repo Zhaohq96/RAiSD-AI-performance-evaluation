@@ -127,7 +127,7 @@ To remove the virtual environment of FAST-NN for saving space:
 bash remove-environment.sh raisd-ai
 ```
 
-If you want to evaluate all tools on the example datasets, you can run the following command. 
+If you want to evaluate all tools on the example datasets, you can run the following command (if you run the _bash delete_dataset.sh example_, you need to download the example dataset with _bash download_dataset.sh example_ again). 
 
 Note that you need have all virtual environment installed before you start.
 
