@@ -33,7 +33,7 @@ eval "$(conda shell.bash hook)"
 
 # Example dataset with 50 simulations
 if [ "$1" = "example" ]; then
-	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51400967;
+	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51400967
 	tar -xzvf dataset-"$1".tar.gz;
 
 
@@ -77,7 +77,7 @@ elif [ "$1" = "recent-migration-5K" ]; then
 	tar -xzvf dataset-"$1".tar.gz
 	
 elif [ "$1" = "old-migration-5K" ]; then
-	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51375674
+	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51394661
 	tar -xzvf dataset-"$1".tar.gz
 	
 elif [ "$1" = "low-intensity-recombination-hotspot-5K" ]; then
@@ -91,7 +91,7 @@ elif [ "$1" = "high-intensity-recombination-hotspot-5K" ]; then
 
 # Datasets with 10K simulations
 elif [ "$1" = "mild-bottleneck-10K" ]; then
-	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51375977
+	wget -O dataset-"$1".tar.gz https://figshare.com/ndownloader/files/51394664
 	tar -xzvf dataset-"$1".tar.gz
 
 elif [ "$1" = "severe-bottleneck-10K" ]; then
