@@ -43,7 +43,7 @@ elif [ "$1" = "t-rex" ]; then
 	conda activate T-REx
 	Rscript ENVIRONMENT/environment-T-REx.R
 	pip3 install pandas numpy==1.24 scipy==1.10 argparse seaborn
-	pip3 install -U scikit-image
+	pip3 install -U scikit-image==0.21.0
 	conda deactivate
 	
 elif [ "$1" = "raisd-ai" ]; then
