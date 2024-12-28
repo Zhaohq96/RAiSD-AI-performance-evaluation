@@ -127,40 +127,24 @@ Note that you need have all virtual environment installed before you start.
 bash run_all_tools.sh dataset-example/ result-example/ example
 ```
 
-The output files related to each tool will be stored in the subfolder of Example_result/ named after them. The results will be collected in the file Example_result/Collection.csv
+The output files related to each tool will be stored in the subfolder of result-example/ named after them. The results will be collected in the file result-example/Collection.csv
 
 ### Step 6: Evaluation results reproduction
-Firstly, the users need to modify the parameters in process_dataset.sh based on the size of dataset (available size of training sets, 1) 1000, 2) 5000 and 3) 10000, testing sets, 1000.
+Firstly, the users need to modify the parameters in process_dataset.sh aligned to the setup in the paper.
+
+```
+num_sim_train: 1) 1000, 2) 5000, and 3) 10000.
+num_sim_test: 1000
+epochs: 100
+```
 
 Then, to change the tool name and the dataset in run_all.sh. 
 
 To reproduce the evaluation results in the paper:
 
 ```
-bash install_environment.sh fast-nn
+bash run_all.sh
 ```
-
-The example dataset is already downloaded but users can still use the following command to download it if needed:
-
-```
-bash download_dataset.sh example
-```
-
-To process the example dataset with FAST-NN:
-
-```
-bash process_dataset.sh faster-nn example
-```
-
-The results will be stored under the path _result-example/FAST-NN_
-
-To delete dataset:
-
-```
-bash delete_dataset.sh example
-```
-
-To delete
 
 Please check the related shell scripts to see more details.
 
