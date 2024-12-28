@@ -71,8 +71,6 @@ if [ "$arch" = "SweepNet" ]; then
 		./RAiSD-AI  -n "SweepNet""$ID"TestingData2DSNP -I "$input"test/selsweep.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl sweepTE -f
 	fi
 
-	./RAiSD-AI -n "SweepNet""$ID"TestingData2DSNP -I "$input"test/neutral.ms -w $RAiSD_AI_win -L $length -its $target -op IMG-GEN -icl neutralTE -f -frm
-
 	./RAiSD-AI -n "SweepNet""$ID""Model" -I "RAiSD_Images.""SweepNet""$ID"TrainingData2DSNP -f -op MDL-GEN -frm -e $epochs -arc SweepNet
 
 	./RAiSD-AI -n "SweepNet""$ID"ModelTest -mdl RAiSD_Model."SweepNet""$ID""Model" -f -op MDL-TST -I RAiSD_Images."SweepNet""$ID"TestingData2DSNP -clp 2 sweepTR=sweepTE neutralTR=neutralTE
