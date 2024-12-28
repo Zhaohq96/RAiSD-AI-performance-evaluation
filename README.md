@@ -87,6 +87,14 @@ sh run_install_environment.sh
 ### Step 5: Quick example
 Here, we provide an example using FAST-NN tool and a small dataset as a reference and demonstrate the step-by-step process for users to know how to use the scripts for result reproduction.
 
+#### Quick command to run all steps
+
+```
+bash run_all.sh
+```
+
+#### Separate commands
+
 To install FAST-NN environment:
 
 ```
