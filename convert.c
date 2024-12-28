@@ -342,7 +342,12 @@ int main (int argc, char ** argv)
 		}
 	}
 	
-	FILE *fp = fopen(file_name, "r");	
+	FILE *fp = fopen(file_name, "r");
+	if (fp == NULL)
+	{
+		printf("Error: No valid input file provided. Please check the input path.\n");
+		return EXIT_FAILURE;
+	}	
 	FILE *fout = NULL;
 	char tstring [100000];
 	char sstring [1000];
