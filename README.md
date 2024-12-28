@@ -124,7 +124,7 @@ bash delete_dataset.sh example
 To remove the virtual environment of FAST-NN for saving space:
 
 ```
-bash remove-environment.sh fast-nn
+bash remove-environment.sh raisd-ai
 ```
 
 If you want to evaluate all tools on the example datasets, you can run the following command. 
