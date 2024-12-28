@@ -98,7 +98,7 @@ bash run_all.sh
 To install FAST-NN environment:
 
 ```
-bash install_environment.sh fast-nn
+bash install_environment.sh raisd-ai
 ```
 
 The example dataset is already downloaded but users can still use the following command to download it if needed:
