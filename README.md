@@ -85,10 +85,46 @@ sh run_install_environment.sh
 ```
 
 ### Step 5: Quick example
-To evaluate all tools on a very small datasets:
+Here, we provide an example using FAST-NN tool and a small dataset as a reference and demonstrate the step-by-step process for users to know how to use the scripts for result reproduction.
+
+To install FAST-NN environment:
 
 ```
-bash run_all_tools.sh Example_dataset/ Example_result/ Example
+bash install_environment.sh fast-nn
+```
+
+The example dataset is already downloaded but users can still use the following command to download it if needed:
+
+```
+bash download_dataset.sh example
+```
+
+To process the example dataset with FAST-NN:
+
+```
+bash process_dataset.sh faster-nn example
+```
+
+The results will be stored under the path _result-example/FAST-NN_
+
+To delete dataset:
+
+```
+bash delete_dataset.sh example
+```
+
+To remove the virtual environment of FAST-NN for saving space:
+
+```
+bash remove-environment.sh fast-nn
+```
+
+If you want to evaluate all tools on the example datasets, you can run the following command. 
+
+Note that you need have all virtual environment installed before you start.
+
+```
+bash run_all_tools.sh dataset-example/ result-example/ example
 ```
 
 The output files related to each tool will be stored in the subfolder of Example_result/ named after them. The results will be collected in the file Example_result/Collection.csv
@@ -101,8 +137,30 @@ Then, to change the tool name and the dataset in run_all.sh.
 To reproduce the evaluation results in the paper:
 
 ```
-bash run_all.sh
+bash install_environment.sh fast-nn
 ```
+
+The example dataset is already downloaded but users can still use the following command to download it if needed:
+
+```
+bash download_dataset.sh example
+```
+
+To process the example dataset with FAST-NN:
+
+```
+bash process_dataset.sh faster-nn example
+```
+
+The results will be stored under the path _result-example/FAST-NN_
+
+To delete dataset:
+
+```
+bash delete_dataset.sh example
+```
+
+To delete
 
 Please check the related shell scripts to see more details.
 
