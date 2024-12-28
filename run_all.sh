@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Install environment
-sh install_environment.sh fast-nn
+bash install_environment.sh fast-nn
 
 # Download dataset
-sh download_dataset.sh mild-bottleneck-1K
+bash download_dataset.sh example
 
 # Process dataset
-sh process_dataset.sh fast-nn mild-bottleneck-1K
+bash process_dataset.sh fast-nn example
 
 # Delete dataset
-sh delete_dataset.sh mild-bottleneck-1K
+bash delete_dataset.sh example
 
 # Remove environment
-sh remove_environment.sh fast-nn
+bash remove_environment.sh fast-nn
