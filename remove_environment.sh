@@ -35,7 +35,7 @@ elif [ "$1" = "surfdawave" ]; then
 elif [ "$1" = "t-rex" ]; then
 	conda env remove --name T-REx
 	
-elif [ "$1" = "sweepnet" ] || [ "$1" = "fast-nn" ] || [ "$1" = "faster-nn" ] || [ "$1" = "faster-nn-g-8" ] || [ "$1" = "faster-nn-g-128" ]; then
+elif [ "$1" = "raisd-ai" ]; then
 	conda env remove --name raisd-ai
 	
 elif [ "$1" = "cnn-nguembang-fadja" ]; then
