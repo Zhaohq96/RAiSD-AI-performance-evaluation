@@ -46,7 +46,7 @@ elif [ "$1" = "t-rex" ]; then
 	pip3 install -U scikit-image
 	conda deactivate
 	
-elif [ "$1" = "sweepnet" ] || [ "$1" = "fast-nn" ] || [ "$1" = "faster-nn" ] || [ "$1" = "faster-nn-g-8" ] || [ "$1" = "faster-nn-g-128" ]; then
+elif [ "$1" = "raisd-ai" ]; then
 	conda env create -f ENVIRONMENT/environment-raisd-ai.yml
 	conda activate raisd-ai
 	pip3 install tensorflow==2.8
