@@ -38,8 +38,8 @@ if [ "$1" = "train" ]; then
 	if [ "$7" = "0" ]; then
 		sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_training.sh "$2" "$3" "$4""$1"/model;
 	elif [ "$7" = "1" ]; then
-		./ProcesSURFDAWave -i $2 -l $6 -o "$2"sur;
-		./ProcesSURFDAWave -i $3 -l $6 -o "$3"sur;
+		./ProcessSURFDAWave -i $2 -l $6 -o "$2"sur;
+		./ProcessSURFDAWave -i $3 -l $6 -o "$3"sur;
 		sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_training.sh "$2"sur "$3"sur "$4""$1"/model;
 	else
 		echo "Wrong input data format"
@@ -55,8 +55,8 @@ elif [ "$1" = "test" ]; then
 	if [ "$8" = "0" ]; then
 		sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_testing.sh "$2" "$3" $5 "$4""$1"/result;
 	elif [ "$8" = "1" ]; then
-		./ProcesSURFDAWave -i $2 -l $6 -o "$2"sur;
-		./ProcesSURFDAWave -i $3 -l $6 -o "$3"sur;
+		./ProcessSURFDAWave -i $2 -l $6 -o "$2"sur;
+		./ProcessSURFDAWave -i $3 -l $6 -o "$3"sur;
 		sh ./SCRIPTS/SURFDAWave_scripts/SURFDAWave_testing.sh "$2"sur "$3"sur $5 "$4""$1"/result;
 	else
 		echo "Wrong input data format"
